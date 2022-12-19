@@ -89,3 +89,6 @@ function updateMessage() {
     render()
     }
   }
+
+  function placePiece(index) {
+    board[index] = turn
