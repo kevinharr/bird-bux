@@ -41,3 +41,13 @@ function attachingListeners() {
         itemEls[i].addEventListener('click', handleClick)
     }
 }
+
+function updateBoard() {
+    board.forEach(function(element, index){
+        if (element === 1) {
+            itemEls[index].textContent = "C"
+        } else if (element === null) {
+            itemEls[index].textContent = ""
+        } 
+    }        
+)}
