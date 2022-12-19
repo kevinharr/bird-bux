@@ -18,5 +18,14 @@ function init() {
     turn = 1
     winner = false
     tie = false
+    round = [null, null, null, null, null, null, null, null, null, null]
+
+    renderCategory()
+
+    
 }
 
+function render() {
+    updateBoard()
+    updateMessage()
+}
