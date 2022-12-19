@@ -101,3 +101,15 @@ function updateMessage() {
       tie = true
     }
   }
+
+  function checkForWinner() {
+    for (let i = 0; i < winningCombos.length; i++) {
+      let sum = 0
+      for (let c = 0; c < 3; c++) {
+        sum += board[winningCombos[i][c]]
+        if (Math.abs(sum) === 3)  {
+          winner = true
+        }
+      }   
+    }
+  }
