@@ -113,3 +113,11 @@ function updateMessage() {
       }   
     }
   }
+
+  function switchPlayerTurn() {
+    if (winner === true) {
+      return
+    } else {
+    turn = turn * -1
+  }
+  }
