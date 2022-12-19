@@ -5,7 +5,7 @@ let board, turn, winner, tie, round
 
 /*------------------------ Cached Element References ------------------------*/
 
-const itemEls = docuemnt.querySelectorAll(".sqr")
+const itemEls = document.querySelectorAll(".sqr")
 const messageEl = document.getElementById("message")
 const resetBtnEl = document. getElementById("reset-button")
 
@@ -25,7 +25,19 @@ function init() {
     
 }
 
+function renderCategory() {
+
+}
+
+
+
 function render() {
     updateBoard()
     updateMessage()
+}
+
+function attachingListeners() {
+    for (i = 0; i < 24; i++) {
+        itemEls[i].addEventListener('click', handleClick)
+    }
 }
