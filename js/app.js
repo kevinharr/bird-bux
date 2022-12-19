@@ -1,5 +1,10 @@
 /*-------------------------------- Constants --------------------------------*/
+import {movies} from "../data/data.js"
+import {music} from "../data/data.js"
+import {travel} from "../data/data.js"
+import {art} from "../data/data.js"
 
+console.log(art)
 /*---------------------------- Variables (state) ----------------------------*/
 let board, turn, winner, tie, round
 
@@ -10,18 +15,23 @@ const messageEl = document.getElementById("message")
 const resetBtnEl = document. getElementById("reset-button")
 
 /*-------------------------------- Functions --------------------------------*/
-import pokemon from "./data.js"
+
 
 window.onload = init()
 
 function init() {
-    board = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+    board = [null, null, null, null]
     turn = 1
     winner = false
     tie = false
     round = [null, null, null, null, null, null, null, null, null, null]
+   
 
     attachingListeners()
+    itemEls[0].textContent = "Movies"
+    itemEls[1].textContent = "Music"
+    itemEls[2].textContent = "Travel"
+    itemEls[3].textContent = "Art"
     renderCategory()
 
     
@@ -39,7 +49,7 @@ function render() {
 }
 
 function attachingListeners() {
-    for (i = 0; i < 24; i++) {
+    for (i = 0; i < 4; i++) {
         itemEls[i].addEventListener('click', handleClick)
     }
 }
