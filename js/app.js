@@ -121,3 +121,5 @@ function updateMessage() {
     turn = turn * -1
   }
   }
+
+  resetBtnEl.addEventListener('click', init)
