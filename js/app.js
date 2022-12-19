@@ -10,6 +10,7 @@ const messageEl = document.getElementById("message")
 const resetBtnEl = document. getElementById("reset-button")
 
 /*-------------------------------- Functions --------------------------------*/
+import pokemon from "./data.js"
 
 window.onload = init()
 
