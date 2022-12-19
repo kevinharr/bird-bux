@@ -73,3 +73,19 @@ function updateMessage() {
       messageEl.textContent = `The winner is ${PlayerSelected}.`
     }
   }
+
+  function handleClick(evt) {
+    const sqIdx = evt.target.id.replace("sq", "")
+    if (board[Number(sqIdx)] !== null) {
+      return
+    } 
+    else if (winner === true){
+      return
+    } else {
+    placePiece(sqIdx)
+    checkForTie ()
+    checkForWinner ()
+    switchPlayerTurn ()
+    render()
+    }
+  }
