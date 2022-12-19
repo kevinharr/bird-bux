@@ -92,3 +92,12 @@ function updateMessage() {
 
   function placePiece(index) {
     board[index] = turn
+  }
+
+  function checkForTie() {
+    if (board.includes(null)) {
+      return
+    } else {
+      tie = true
+    }
+  }
