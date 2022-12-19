@@ -11,7 +11,7 @@ body {
 div {
   display: grid;
   align-items:initial;
-  border: 1px solid purple;
+  border: 1px solid;
   font-size: small;
   text-align: center;
   vertical-align: middle;
@@ -22,15 +22,20 @@ div {
 
 .grid-container {
     display:grid;
-    grid-template-columns: 25px 25px 100px 100px 100px 100px 25px 25px;
+    grid-template-columns: 110px 110px 110px 110px 110px 110px 110px 110px;
     grid-template-rows: 100px 100px 100px;
-    border-color: black;
-    border-width: 1px;
+    /* border-color: black; */ 
+    /* border-width: 1px; */
 }
 
 .grid-item {
-    border-color: black;
+    /* border-color: black; */
     border-width: 1px;
-    outline-color: blue;
+}
+
+button {
+    width: 80px;
+    padding: 10px;
+    border-color: black;
 }
 
