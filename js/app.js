@@ -20,6 +20,7 @@ function init() {
     tie = false
     round = [null, null, null, null, null, null, null, null, null, null]
 
+    attachingListeners()
     renderCategory()
 
     
@@ -50,4 +51,25 @@ function updateBoard() {
             itemEls[index].textContent = ""
         } 
     }        
-)}
+)
+}
+
+function updateMessage() {
+  
+    let PlayerSelected
+    let PlayerOne = "Player One"
+    let PlayerTwo = "Player Two"
+   
+    if (turn === 1) {
+      PlayerSelected = PlayerOne
+    } else if (turn === -1) {
+      PlayerSelected = PlayerTwo
+    }
+    if (winner === false && tie === false) {
+      messageEl.textContent = `It is the turn of ${PlayerSelected}.`
+    } else if (winner === false && tie === true) {
+      messageEl.textContent = "It is a tie."
+    } else if (winner === true && tie === false) {
+      messageEl.textContent = `The winner is ${PlayerSelected}.`
+    }
+  }
