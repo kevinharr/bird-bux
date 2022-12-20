@@ -7,7 +7,7 @@ import {art} from "../data/data.js"
 //console.log(art)
 
 /*---------------------------- Variables (state) ----------------------------*/
-let menu, board, turn, winner, tie, round
+let menu, board, turn, winner, tie, round, questionNumber
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -23,7 +23,7 @@ const answerThreeEl = document.getElementById("answerThree")
 const answerFourEl = document.getElementById("answerFour")
 const resetBtnEl = document. getElementById("reset-button")
 const quizCategories = [movies, music, travel, art]
-const questions = []
+const questionContainer = document.getElementById("question-container")
 
 /*-------------------------------- Event Listeners --------------------------------*/
 
@@ -51,6 +51,7 @@ function init() {
     winner = false
     tie = false
     round = [null, null, null, null, null, null, null, null, null, null]
+    questionNumber = 1
 }
 
 
@@ -99,34 +100,53 @@ function init() {
 
 function buttonClick(evt) {
     const category = evt.target.id
-    console.log("capturing what happens with a button click", category)
+    console.log("capturing what happens with a button click:", category)
     console.log(typeof category)
     if (category === "movies") {
-    return 1
+        movieQuestions()
     }
     if (category === "music") {
-        return 2
+        music()
     }
     if (category === "travel") {
-        return 3
+        travel()
     }
     if (category === "art") {
-        return 4
+        art()
     }
 }
 
-function populateQuestions(buttonClick) {
-    let questionSet = buttonClick
-    console.log("return function", questionSet)
-    i = Math.floor(Math.random() * 5)
-    console.log("the meaning of i",i)
-    questionEl.textContent = "test"
-    console.log(questionEl.textContent)
-    answerOneEl.textContent = questionSet[i].answerOne
-    answerTwoEl.textContent = questionSet[i].answerTwo
-    answerThreeEl.textContent = questionSet[i].answerThree
-    answerFourEl.textContent = questionSet[i].answerFour
+function movieQuestions(questionNumber) {
+    questionNumber = 1
+    questionContainer.innerHTML = ''
+    let questionCard = document.createElement('div')
+    questionCard.innerHTML =
+    `<div>
+      <p>${movies[questionNumber].question}</p>
+      <div id="answer-container">
+       <div id="answerOne">${movies[questionNumber].answerOne[0]}</dir>
+       <div id="answerOne">${movies[questionNumber].answerTwo[0]}</dir>
+       <div id="answerOne">${movies[questionNumber].answerThree[0]}</dir>
+       <div id="answerOne">${movies[questionNumber].answerFour[0]}</dir>
+    </div>
+    `
+
+    questionContainer.appendChild(questionCard)
 }
+
+
+// function populateQuestions(buttonClick) {
+//     let questionSet = buttonClick
+//     console.log("return function", questionSet)
+//     i = Math.floor(Math.random() * 5)
+//     console.log("the meaning of i",i)
+//     questionEl.textContent = "test"
+//     console.log(questionEl.textContent)
+//     answerOneEl.textContent = questionSet[i].answerOne
+//     answerTwoEl.textContent = questionSet[i].answerTwo
+//     answerThreeEl.textContent = questionSet[i].answerThree
+//     answerFourEl.textContent = questionSet[i].answerFour
+// }
 //     const sqIdx = evt.target.id.replace("sq", "")
 //     if (board[Number(sqIdx)] !== null) {
 //       return
