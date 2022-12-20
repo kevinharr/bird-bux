@@ -7,7 +7,7 @@ import {art} from "../data/data.js"
 //console.log(art)
 
 /*---------------------------- Variables (state) ----------------------------*/
-let menu, board, turn, winner, tie, round, questionNumber
+let board, turn, winner, tie, round, questionNumber
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -17,20 +17,20 @@ const musicBtn = document.getElementById("music")
 const travelBtn = document.getElementById("travel")
 const artBtn = document.getElementById("art")
 const questionEl = document.getElementById("question")
-const answerSquares = document.querySelectorAll(".sqr")
+
+//console.log(answerSquares)
 const resetBtnEl = document. getElementById("reset-button")
 const questionContainer = document.getElementById("question-container")
 
+let answerSquares = document.querySelectorAll(".sqr")
+    
+    
 /*-------------------------------- Event Listeners --------------------------------*/
 
 movieBtn.addEventListener('click', buttonClick)
 musicBtn.addEventListener('click', buttonClick)
 travelBtn.addEventListener('click', buttonClick)
 artBtn.addEventListener('click', buttonClick)
-answerOneEl.addEventListener('click', buttonClick)
-answerTwoEl.addEventListener('click', buttonClick)
-answerThreeEl.addEventListener('click', buttonClick)
-answerFourEl.addEventListener('click', buttonClick)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -45,8 +45,11 @@ function init() {
     questionNumber = 0
 }
 
+// answerSquares.forEach(function(elem) {
+//     elem.addEventListener('click', handleClick)
+// })
 
-  
+// document.querySelectorAll('.sqr').forEach((elem) => elem.addEventListener('click', handleClick));
 
 
 
@@ -79,23 +82,27 @@ function init() {
 
 function buttonClick(evt) {
     const category = evt.target.id
-    //console.log("capturing what happens with a button click:", category)
+    console.log("capturing what happens with a button click:", category)
     //console.log(typeof category)
     if (category === "movies") {
         movieQuestions(questionNumber)
     }
     if (category === "music") {
-        music()
+        musicQuestions(questionNumber)
     }
     if (category === "travel") {
-        travel()
+        travelQuestions(questionNumber)
     }
     if (category === "art") {
-        art()
+        artQuestions(questionNumber)
     }
+    answerSquares = document.querySelectorAll(".sqr")
+    answerSquares.forEach(function(elem) {
+        elem.addEventListener('click', handleClick)
+    })
 }
 
-
+/* QUESTION GENERATOR BY CATEGORY*/
 
 function movieQuestions(num) {
     questionContainer.innerHTML = ''
@@ -104,10 +111,61 @@ function movieQuestions(num) {
     `<div>
       <p>${movies[num].question}</p>
       <div id="answer-container">
-       <div class="sqr" id="ans0">${movies[num].answerOne[0]}</dir>
-       <div class="sqr" id="ans1">${movies[num].answerTwo[0]}</dir>
-       <div class="sqr" id="ans2">${movies[num].answerThree[0]}</dir>
-       <div class="sqr" id="ans3">${movies[num].answerFour[0]}</dir>
+       <div class="sqr" id="ans0">${movies[num].answerOne}</dir>
+       <div class="sqr" id="ans1">${movies[num].answerTwo}</dir>
+       <div class="sqr" id="ans2">${movies[num].answerThree}</dir>
+       <div class="sqr" id="ans3">${movies[num].answerFour}</dir>
+    </div>
+    `
+
+    questionContainer.appendChild(questionCard)
+}
+
+function musicQuestions(num) {
+    questionContainer.innerHTML = ''
+    let questionCard = document.createElement('div')
+    questionCard.innerHTML =
+    `<div>
+      <p>${music[num].question}</p>
+      <div id="answer-container">
+       <div class="sqr" id="ans0">${music[num].answerOne}</dir>
+       <div class="sqr" id="ans1">${music[num].answerTwo}</dir>
+       <div class="sqr" id="ans2">${music[num].answerThree}</dir>
+       <div class="sqr" id="ans3">${music[num].answerFour}</dir>
+    </div>
+    `
+
+    questionContainer.appendChild(questionCard)
+}
+
+function travelQuestions(num) {
+    questionContainer.innerHTML = ''
+    let questionCard = document.createElement('div')
+    questionCard.innerHTML =
+    `<div>
+      <p>${travel[num].question}</p>
+      <div id="answer-container">
+       <div class="sqr" id="ans0">${travel[num].answerOne}</dir>
+       <div class="sqr" id="ans1">${travel[num].answerTwo}</dir>
+       <div class="sqr" id="ans2">${travel[num].answerThree}</dir>
+       <div class="sqr" id="ans3">${travel[num].answerFour}</dir>
+    </div>
+    `
+
+    questionContainer.appendChild(questionCard)
+}
+
+function artQuestions(num) {
+    questionContainer.innerHTML = ''
+    let questionCard = document.createElement('div')
+    questionCard.innerHTML =
+    `<div>
+      <p>${art[num].question}</p>
+      <div id="answer-container">
+       <div class="sqr" id="ans0">${art[num].answerOne}</dir>
+       <div class="sqr" id="ans1">${art[num].answerTwo}</dir>
+       <div class="sqr" id="ans2">${art[num].answerThree}</dir>
+       <div class="sqr" id="ans3">${art[num].answerFour}</dir>
     </div>
     `
 
@@ -115,10 +173,19 @@ function movieQuestions(num) {
 }
 
 
-// function handleClick(evt) {
-//     const ansIdx = evt.target.id.replace("ans", "")
-//     return Number(ansIdx)
-//     } 
+/*_______________________________________________*/
+
+
+function handleClick(evt) {
+    console.log("answer clicked.")
+    // let ansIdx = Number((evt.target.id.replace("ans", "")))
+    // let x = 6
+    // console.log("result of game answer box that was clicked on:", ansIdx, x)
+    // return ansIdx
+    // updateBoard(ansIdx)
+    } 
+  
+
 //     if (winner === true){
 //       return
 //     } else {
@@ -132,14 +199,17 @@ function movieQuestions(num) {
 // }
 
 function updateBoard(index) {
-    if (index === movies[num].correctAnswer ||
-        index === music[num].correctAnswer ||
-        index === travel[num].correctAnswer ||
-        index === art[num].correctAnswer) {
-        answerSquares[index].textContent = "C"
-    } else {
-        answerSquares[index].textContent = "C"
-    }
+    if (index === movies[num].correctAnswer) 
+        console.log("index number", index)
+        
+    //     ||
+    //     index === music[num].correctAnswer ||
+    //     index === travel[num].correctAnswer ||
+    //     index === art[num].correctAnswer) {
+    //     answerSquares[index].textContent = "C"
+    // } else {
+    //     answerSquares[index].textContent = ""
+    // }
 
 }
 
