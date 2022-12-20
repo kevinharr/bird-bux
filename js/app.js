@@ -4,8 +4,8 @@ import {music} from "../data/data.js"
 import {travel} from "../data/data.js"
 import {art} from "../data/data.js"
 
+//console.log(art)
 
-console.log(art)
 /*---------------------------- Variables (state) ----------------------------*/
 let menu, board, turn, winner, tie, round
 
@@ -32,10 +32,10 @@ musicBtn.addEventListener('click', buttonClick)
 travelBtn.addEventListener('click', buttonClick)
 artBtn.addEventListener('click', buttonClick)
 
-<div id="answerOne"></div>
-            <div id="answerTwo"></div>
-            <div id="answerThree"></div>
-            <div id="answerFour"></div>
+// {/* <div id="answerOne"></div>
+//             <div id="answerTwo"></div>
+//             <div id="answerThree"></div>
+//             <div id="answerFour"></div> */}
 
 
 
@@ -51,21 +51,21 @@ function init() {
     winner = false
     tie = false
     round = [null, null, null, null, null, null, null, null, null, null]
-   
+}
 
 
     
 
 
-function render() {
-    questionContainer.innerHTML = ''
-    quotes.forEach((quote, idx) => {
-      appendQuote(quote, idx)
-    })
-    // quotes.forEach(function(quote, idx) {
-    //   appendQuote(quote, idx)
-    // })
-  }
+// function render() {
+//     questionContainer.innerHTML = ''
+//     quotes.forEach((quote, idx) => {
+//       appendQuote(quote, idx)
+//     })
+//     // quotes.forEach(function(quote, idx) {
+//     //   appendQuote(quote, idx)
+//     // })
+//   }
 
 
 
@@ -79,50 +79,52 @@ function render() {
 //     }
 //   }
 
-  function updateBoard() {
-    board.forEach(function(element, index){
-        if (element === 1) {
-            itemEls[index].textContent = "C"
-        } else if (element === null) {
-            itemEls[index].textContent = ""
-        } 
-    }        
-)
-}
+//   function updateBoard() {
+//     board.forEach(function(element, index){
+//         if (element === 1) {
+//             itemEls[index].textContent = "C"
+//         } else if (element === null) {
+//             itemEls[index].textContent = ""
+//         } 
+//     }        
+// )
+// }
 
-function render() {
-    updateBoard()
-    updateMessage()
-}
+// function render() {
+//     updateBoard()
+//     updateMessage()
+// }
 
 
 
 function buttonClick(evt) {
     const category = evt.target.id
+    console.log("capturing what happens with a button click", category)
+    console.log(typeof category)
     if (category === "movies") {
-    return "movies"
+    return movies
     }
     if (category === "music") {
-        return "music"
+        return music
     }
     if (category === "travel") {
-        return "travel"
+        return travel
     }
     if (category === "art") {
-        return "art"
+        return art
     }
 }
 
 function populateQuestions(buttonClick) {
+    console.log("return function", buttonClick)
     i = Math.floor(Math.random() * 5)
-    questionEl.textContent = buttonClick[i].question
+    console.log("the meaning of i",i)
+    questionEl.textContent = "test"
+    console.log(questionEl.textContent)
     answerOneEl.textContent = buttonClick[i].answerOne
     answerTwoEl.textContent = buttonClick[i].answerTwo
     answerThreeEl.textContent = buttonClick[i].answerThree
     answerFourEl.textContent = buttonClick[i].answerFour
-
-    
-
 }
 //     const sqIdx = evt.target.id.replace("sq", "")
 //     if (board[Number(sqIdx)] !== null) {
