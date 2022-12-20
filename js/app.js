@@ -102,29 +102,30 @@ function buttonClick(evt) {
     console.log("capturing what happens with a button click", category)
     console.log(typeof category)
     if (category === "movies") {
-    return movies
+    return 1
     }
     if (category === "music") {
-        return music
+        return 2
     }
     if (category === "travel") {
-        return travel
+        return 3
     }
     if (category === "art") {
-        return art
+        return 4
     }
 }
 
 function populateQuestions(buttonClick) {
-    console.log("return function", buttonClick)
+    let questionSet = buttonClick
+    console.log("return function", questionSet)
     i = Math.floor(Math.random() * 5)
     console.log("the meaning of i",i)
     questionEl.textContent = "test"
     console.log(questionEl.textContent)
-    answerOneEl.textContent = buttonClick[i].answerOne
-    answerTwoEl.textContent = buttonClick[i].answerTwo
-    answerThreeEl.textContent = buttonClick[i].answerThree
-    answerFourEl.textContent = buttonClick[i].answerFour
+    answerOneEl.textContent = questionSet[i].answerOne
+    answerTwoEl.textContent = questionSet[i].answerTwo
+    answerThreeEl.textContent = questionSet[i].answerThree
+    answerFourEl.textContent = questionSet[i].answerFour
 }
 //     const sqIdx = evt.target.id.replace("sq", "")
 //     if (board[Number(sqIdx)] !== null) {
