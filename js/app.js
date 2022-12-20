@@ -32,6 +32,14 @@ musicBtn.addEventListener('click', buttonClick)
 travelBtn.addEventListener('click', buttonClick)
 artBtn.addEventListener('click', buttonClick)
 
+<div id="answerOne"></div>
+            <div id="answerTwo"></div>
+            <div id="answerThree"></div>
+            <div id="answerFour"></div>
+
+
+
+
 /*-------------------------------- Functions --------------------------------*/
 
 window.onload = init()
@@ -106,8 +114,14 @@ function buttonClick(evt) {
 }
 
 function populateQuestions(buttonClick) {
-    messageEl.textContent = "It is a tie."
-    <h2 id="question"></h2>
+    i = Math.floor(Math.random() * 5)
+    questionEl.textContent = buttonClick[i].question
+    answerOneEl.textContent = buttonClick[i].answerOne
+    answerTwoEl.textContent = buttonClick[i].answerTwo
+    answerThreeEl.textContent = buttonClick[i].answerThree
+    answerFourEl.textContent = buttonClick[i].answerFour
+
+    
 
 }
 //     const sqIdx = evt.target.id.replace("sq", "")
