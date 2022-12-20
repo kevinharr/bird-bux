@@ -38,3 +38,8 @@ button {
     border-color: black;
 }
 
+#button-container {
+    display:flex;
+    
+}
+
