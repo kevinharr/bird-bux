@@ -1,9 +1,9 @@
 const movies = [
-    { category: "movies", question: "Who wrote the screenplay for 1983's Scarface?", answerOne: ["Aaron Sorkin", false], answerTwo: ["Oliver Stone", true],  answerThree: ["Paul Schrader", false], answerFour: ["Francis Ford Coppola", false]},
-    { category: "movies", question: "Who wrote the screenplay for 1983's Scarface?", answerOne: ["Aaron Sorkin", false], answerTwo: ["Oliver Stone", true],  answerThree: ["Paul Schrader", false], answerFour: ["Francis Ford Coppola", false]},
-    { category: "movies", question: "Who wrote the screenplay for 1983's Scarface?", answerOne: ["Aaron Sorkin", false], answerTwo: ["Oliver Stone", true],  answerThree: ["Paul Schrader", false], answerFour: ["Francis Ford Coppola", false]},
-    { category: "movies", question: "Who wrote the screenplay for 1983's Scarface?", answerOne: ["Aaron Sorkin", false], answerTwo: ["Oliver Stone", true],  answerThree: ["Paul Schrader", false], answerFour: ["Francis Ford Coppola", false]},
-    { category: "movies", question: "Who wrote the screenplay for 1983's Scarface?", answerOne: ["Aaron Sorkin", false], answerTwo: ["Oliver Stone", true],  answerThree: ["Paul Schrader", false], answerFour: ["Francis Ford Coppola", false]},
+    { category: "movies", question: "Who wrote the screenplay for 1983's Scarface?", answerOne: ["Aaron Sorkin", false], answerTwo: ["Oliver Stone1", true],  answerThree: ["Paul Schrader", false], answerFour: ["Francis Ford Coppola", false]},
+    { category: "movies", question: "Who wrote the screenplay for 1983's Scarface?", answerOne: ["Aaron Sorkin", false], answerTwo: ["Oliver Stone2", true],  answerThree: ["Paul Schrader", false], answerFour: ["Francis Ford Coppola", false]},
+    { category: "movies", question: "Who wrote the screenplay for 1983's Scarface?", answerOne: ["Aaron Sorkin", false], answerTwo: ["Oliver Stone3", true],  answerThree: ["Paul Schrader", false], answerFour: ["Francis Ford Coppola", false]},
+    { category: "movies", question: "Who wrote the screenplay for 1983's Scarface?", answerOne: ["Aaron Sorkin", false], answerTwo: ["Oliver Stone4", true],  answerThree: ["Paul Schrader", false], answerFour: ["Francis Ford Coppola", false]},
+    { category: "movies", question: "Who wrote the screenplay for 1983's Scarface?", answerOne: ["Aaron Sorkin", false], answerTwo: ["Oliver Stone5", true],  answerThree: ["Paul Schrader", false], answerFour: ["Francis Ford Coppola", false]},
 ]
 
 const music = [

@@ -51,7 +51,7 @@ function init() {
     winner = false
     tie = false
     round = [null, null, null, null, null, null, null, null, null, null]
-    questionNumber = 1
+    questionNumber = 0
 }
 
 
@@ -100,10 +100,10 @@ function init() {
 
 function buttonClick(evt) {
     const category = evt.target.id
-    console.log("capturing what happens with a button click:", category)
-    console.log(typeof category)
+    //console.log("capturing what happens with a button click:", category)
+    //console.log(typeof category)
     if (category === "movies") {
-        movieQuestions()
+        movieQuestions(questionNumber)
     }
     if (category === "music") {
         music()
@@ -116,18 +116,22 @@ function buttonClick(evt) {
     }
 }
 
-function movieQuestions(questionNumber) {
-    questionNumber = 1
+function checkQuestionNumber () {
+    let questionNumber = 0
+    return questionNumber
+}
+
+function movieQuestions(num) {
     questionContainer.innerHTML = ''
     let questionCard = document.createElement('div')
     questionCard.innerHTML =
     `<div>
-      <p>${movies[questionNumber].question}</p>
+      <p>${movies[num].question}</p>
       <div id="answer-container">
-       <div id="answerOne">${movies[questionNumber].answerOne[0]}</dir>
-       <div id="answerOne">${movies[questionNumber].answerTwo[0]}</dir>
-       <div id="answerOne">${movies[questionNumber].answerThree[0]}</dir>
-       <div id="answerOne">${movies[questionNumber].answerFour[0]}</dir>
+       <div id="answerOne">${movies[num].answerOne[0]}</dir>
+       <div id="answerOne">${movies[num].answerTwo[0]}</dir>
+       <div id="answerOne">${movies[num].answerThree[0]}</dir>
+       <div id="answerOne">${movies[num].answerFour[0]}</dir>
     </div>
     `
 
