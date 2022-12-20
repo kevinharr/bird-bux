@@ -20,8 +20,14 @@ const resetBtnEl = document. getElementById("reset-button")
 const quizCategories = [movies, music, travel, art]
 const questions = []
 
-/*-------------------------------- Functions --------------------------------*/
+/*-------------------------------- Event Listeners --------------------------------*/
 
+movieBtn.addEventListener('click', handleClick)
+musicBtn.addEventListener('click', handleClick)
+travelBtn.addEventListener('click', handleClick)
+artBtn.addEventListener('click', handleClick)
+
+/*-------------------------------- Functions --------------------------------*/
 
 window.onload = init()
 
@@ -45,24 +51,22 @@ function renderCategory() {
 
 }
 
-function handleClickCategory(evt) {
-    const sqIdx = evt.target.id.replace("sq", "")
-    if (winner === true){
-      return
-    } else if (Number(sqIdx) === 0) {
-        console.log("console log for movies", Number(sqIdx))
-        movies()
-    } else if (Number(sqIdx) === 1) {
-        music()
-    } else if (Number(sqIdx) === 2) {
-        travel()
-    } else if (Number(sqIdx) === 2) {
-        art()
-    }
+function render() {
+    questionContainer.innerHTML = ''
+    quotes.forEach((quote, idx) => {
+      appendQuote(quote, idx)
+    })
+    // quotes.forEach(function(quote, idx) {
+    //   appendQuote(quote, idx)
+    // })
+  }
 
-function movies () {
+function loadQuestion() {
 
 }
+
+
+
 //     placePiece(sqIdx)
 //     checkForTie ()
 //     checkForWinner ()
@@ -87,13 +91,7 @@ function render() {
     updateMessage()
 }
 
-function attachingListeners() {
-    for (let i = 0; i < 4; i++) {
-        itemEls[i].addEventListener('click', handleClick)
-    }
-  
 
-}
 
 // function handleClick(evt) {
 //     const sqIdx = evt.target.id.replace("sq", "")

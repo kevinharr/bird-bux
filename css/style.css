@@ -43,3 +43,8 @@ button {
     
 }
 
+#answer-container {
+    display: flex;
+    
+}
+
