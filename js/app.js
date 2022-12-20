@@ -11,21 +11,26 @@ let menu, board, turn, winner, tie, round
 
 /*------------------------ Cached Element References ------------------------*/
 
+const messageEl = document.getElementById("message")
 const movieBtn = document.getElementById("movies")
 const musicBtn = document.getElementById("music")
 const travelBtn = document.getElementById("travel")
 const artBtn = document.getElementById("art")
-const messageEl = document.getElementById("message")
+const questionEl = document.getElementById("question")
+const answerOneEl = document.getElementById("answerOne")
+const answerTwoEl = document.getElementById("answerTwo")
+const answerThreeEl = document.getElementById("answerThree")
+const answerFourEl = document.getElementById("answerFour")
 const resetBtnEl = document. getElementById("reset-button")
 const quizCategories = [movies, music, travel, art]
 const questions = []
 
 /*-------------------------------- Event Listeners --------------------------------*/
 
-movieBtn.addEventListener('click', handleClick)
-musicBtn.addEventListener('click', handleClick)
-travelBtn.addEventListener('click', handleClick)
-artBtn.addEventListener('click', handleClick)
+movieBtn.addEventListener('click', buttonClick)
+musicBtn.addEventListener('click', buttonClick)
+travelBtn.addEventListener('click', buttonClick)
+artBtn.addEventListener('click', buttonClick)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -40,16 +45,9 @@ function init() {
     round = [null, null, null, null, null, null, null, null, null, null]
    
 
-    attachingListeners()
+
     
-    renderCategory()    
-}
 
-function renderCategory() {
-
-
-
-}
 
 function render() {
     questionContainer.innerHTML = ''
@@ -61,9 +59,7 @@ function render() {
     // })
   }
 
-function loadQuestion() {
 
-}
 
 
 
@@ -93,7 +89,27 @@ function render() {
 
 
 
-// function handleClick(evt) {
+function buttonClick(evt) {
+    const category = evt.target.id
+    if (category === "movies") {
+    return "movies"
+    }
+    if (category === "music") {
+        return "music"
+    }
+    if (category === "travel") {
+        return "travel"
+    }
+    if (category === "art") {
+        return "art"
+    }
+}
+
+function populateQuestions(buttonClick) {
+    messageEl.textContent = "It is a tie."
+    <h2 id="question"></h2>
+
+}
 //     const sqIdx = evt.target.id.replace("sq", "")
 //     if (board[Number(sqIdx)] !== null) {
 //       return
