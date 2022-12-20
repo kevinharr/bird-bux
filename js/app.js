@@ -4,15 +4,17 @@ import {music} from "../data/data.js"
 import {travel} from "../data/data.js"
 import {art} from "../data/data.js"
 
+
 console.log(art)
 /*---------------------------- Variables (state) ----------------------------*/
-let board, turn, winner, tie, round
+let menu, board, turn, winner, tie, round
 
 /*------------------------ Cached Element References ------------------------*/
 
 const itemEls = document.querySelectorAll(".sqr")
 const messageEl = document.getElementById("message")
 const resetBtnEl = document. getElementById("reset-button")
+const quizCategories = [movies, music, travel, art]
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -20,6 +22,7 @@ const resetBtnEl = document. getElementById("reset-button")
 window.onload = init()
 
 function init() {
+    menu = [null, null, null, null]
     board = [null, null, null, null]
     turn = 1
     winner = false
@@ -28,18 +31,28 @@ function init() {
    
 
     attachingListeners()
-    itemEls[0].textContent = "Movies"
-    itemEls[1].textContent = "Music"
-    itemEls[2].textContent = "Travel"
-    itemEls[3].textContent = "Art"
-    renderCategory()
-
     
+    renderCategory()    
 }
 
 function renderCategory() {
 
+
+
 }
+
+function handleClickCategory(evt) {
+    const sqIdx = evt.target.id.replace("sq", "")
+    if (winner === true){
+      return
+    } else if {
+    placePiece(sqIdx)
+    checkForTie ()
+    checkForWinner ()
+    switchPlayerTurn ()
+    render()
+    }
+  }
 
 
 
@@ -49,10 +62,43 @@ function render() {
 }
 
 function attachingListeners() {
-    for (i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {
         itemEls[i].addEventListener('click', handleClick)
     }
+  
+
 }
+
+function handleClick(evt) {
+    const sqIdx = evt.target.id.replace("sq", "")
+    if (board[Number(sqIdx)] !== null) {
+      return
+    } 
+    else if (winner === true){
+      return
+    } else {
+    placePiece(sqIdx)
+    checkForTie ()
+    checkForWinner ()
+    switchPlayerTurn ()
+    render()
+    }
+  }
+  function handleClick(evt) {
+    const sqIdx = evt.target.id.replace("sq", "")
+    if (board[Number(sqIdx)] !== null) {
+      return
+    } 
+    else if (winner === true){
+      return
+    } else {
+    placePiece(sqIdx)
+    checkForTie ()
+    checkForWinner ()
+    switchPlayerTurn ()
+    render()
+    }
+  }
 
 function updateBoard() {
     board.forEach(function(element, index){
