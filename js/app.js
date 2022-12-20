@@ -17,12 +17,8 @@ const musicBtn = document.getElementById("music")
 const travelBtn = document.getElementById("travel")
 const artBtn = document.getElementById("art")
 const questionEl = document.getElementById("question")
-const answerOneEl = document.getElementById("answerOne")
-const answerTwoEl = document.getElementById("answerTwo")
-const answerThreeEl = document.getElementById("answerThree")
-const answerFourEl = document.getElementById("answerFour")
+const answerSquares = document.querySelectorAll(".sqr")
 const resetBtnEl = document. getElementById("reset-button")
-const quizCategories = [movies, music, travel, art]
 const questionContainer = document.getElementById("question-container")
 
 /*-------------------------------- Event Listeners --------------------------------*/
@@ -31,21 +27,16 @@ movieBtn.addEventListener('click', buttonClick)
 musicBtn.addEventListener('click', buttonClick)
 travelBtn.addEventListener('click', buttonClick)
 artBtn.addEventListener('click', buttonClick)
-
-// {/* <div id="answerOne"></div>
-//             <div id="answerTwo"></div>
-//             <div id="answerThree"></div>
-//             <div id="answerFour"></div> */}
-
-
-
+answerOneEl.addEventListener('click', buttonClick)
+answerTwoEl.addEventListener('click', buttonClick)
+answerThreeEl.addEventListener('click', buttonClick)
+answerFourEl.addEventListener('click', buttonClick)
 
 /*-------------------------------- Functions --------------------------------*/
 
 window.onload = init()
 
 function init() {
-    menu = [null, null, null, null]
     board = [null, null, null, null]
     turn = 1
     winner = false
@@ -55,19 +46,7 @@ function init() {
 }
 
 
-    
-
-
-// function render() {
-//     questionContainer.innerHTML = ''
-//     quotes.forEach((quote, idx) => {
-//       appendQuote(quote, idx)
-//     })
-//     // quotes.forEach(function(quote, idx) {
-//     //   appendQuote(quote, idx)
-//     // })
-//   }
-
+  
 
 
 
@@ -116,10 +95,7 @@ function buttonClick(evt) {
     }
 }
 
-function checkQuestionNumber () {
-    let questionNumber = 0
-    return questionNumber
-}
+
 
 function movieQuestions(num) {
     questionContainer.innerHTML = ''
@@ -128,10 +104,10 @@ function movieQuestions(num) {
     `<div>
       <p>${movies[num].question}</p>
       <div id="answer-container">
-       <div id="answerOne">${movies[num].answerOne[0]}</dir>
-       <div id="answerOne">${movies[num].answerTwo[0]}</dir>
-       <div id="answerOne">${movies[num].answerThree[0]}</dir>
-       <div id="answerOne">${movies[num].answerFour[0]}</dir>
+       <div class="sqr" id="ans0">${movies[num].answerOne[0]}</dir>
+       <div class="sqr" id="ans1">${movies[num].answerTwo[0]}</dir>
+       <div class="sqr" id="ans2">${movies[num].answerThree[0]}</dir>
+       <div class="sqr" id="ans3">${movies[num].answerFour[0]}</dir>
     </div>
     `
 
@@ -139,58 +115,35 @@ function movieQuestions(num) {
 }
 
 
-// function populateQuestions(buttonClick) {
-//     let questionSet = buttonClick
-//     console.log("return function", questionSet)
-//     i = Math.floor(Math.random() * 5)
-//     console.log("the meaning of i",i)
-//     questionEl.textContent = "test"
-//     console.log(questionEl.textContent)
-//     answerOneEl.textContent = questionSet[i].answerOne
-//     answerTwoEl.textContent = questionSet[i].answerTwo
-//     answerThreeEl.textContent = questionSet[i].answerThree
-//     answerFourEl.textContent = questionSet[i].answerFour
+// function handleClick(evt) {
+//     const ansIdx = evt.target.id.replace("ans", "")
+//     return Number(ansIdx)
+//     } 
+//     if (winner === true){
+//       return
+//     } else {
+//     placePiece(ansIdx)
+//     updateBoard(ansIdx)
+//     checkForTie ()
+//     checkForWinner ()
+//     switchPlayerTurn ()
+//     render()
+//     }
 // }
-//     const sqIdx = evt.target.id.replace("sq", "")
-//     if (board[Number(sqIdx)] !== null) {
-//       return
-//     } 
-//     else if (winner === true){
-//       return
-//     } else {
-//     placePiece(sqIdx)
-//     checkForTie ()
-//     checkForWinner ()
-//     switchPlayerTurn ()
-//     render()
-//     }
-//   }
-//   function handleClick(evt) {
-//     const sqIdx = evt.target.id.replace("sq", "")
-//     if (board[Number(sqIdx)] !== null) {
-//       return
-//     } 
-//     else if (winner === true){
-//       return
-//     } else {
-//     placePiece(sqIdx)
-//     checkForTie ()
-//     checkForWinner ()
-//     switchPlayerTurn ()
-//     render()
-//     }
-//   }
 
-// function updateBoard() {
-//     board.forEach(function(element, index){
-//         if (element === 1) {
-//             itemEls[index].textContent = "C"
-//         } else if (element === null) {
-//             itemEls[index].textContent = ""
-//         } 
-//     }        
-// )
-// }
+function updateBoard(index) {
+    if (index === movies[num].correctAnswer ||
+        index === music[num].correctAnswer ||
+        index === travel[num].correctAnswer ||
+        index === art[num].correctAnswer) {
+        answerSquares[index].textContent = "C"
+    } else {
+        answerSquares[index].textContent = "C"
+    }
+
+}
+
+
 
 // function updateMessage() {
   
@@ -261,3 +214,39 @@ function movieQuestions(num) {
 //   }
 
 //   resetBtnEl.addEventListener('click', init)
+
+
+
+
+
+
+/*______________Excess Code____________________*/
+
+
+
+// function populateQuestions(buttonClick) {
+//     let questionSet = buttonClick
+//     console.log("return function", questionSet)
+//     i = Math.floor(Math.random() * 5)
+//     console.log("the meaning of i",i)
+//     questionEl.textContent = "test"
+//     console.log(questionEl.textContent)
+//     answerOneEl.textContent = questionSet[i].answerOne
+//     answerTwoEl.textContent = questionSet[i].answerTwo
+//     answerThreeEl.textContent = questionSet[i].answerThree
+//     answerFourEl.textContent = questionSet[i].answerFour
+// }
+//     const sqIdx = evt.target.id.replace("sq", "")
+//     if (board[Number(sqIdx)] !== null) {
+//       return
+//     } 
+//     else if (winner === true){
+//       return
+//     } else {
+//     placePiece(sqIdx)
+//     checkForTie ()
+//     checkForWinner ()
+//     switchPlayerTurn ()
+//     render()
+//     }
+//   }
