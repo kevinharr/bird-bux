@@ -11,7 +11,10 @@ let menu, board, turn, winner, tie, round
 
 /*------------------------ Cached Element References ------------------------*/
 
-const itemEls = document.querySelectorAll(".sqr")
+const movieBtn = document.getElementById("movies")
+const musicBtn = document.getElementById("music")
+const travelBtn = document.getElementById("travel")
+const artBtn = document.getElementById("art")
 const messageEl = document.getElementById("message")
 const resetBtnEl = document. getElementById("reset-button")
 const quizCategories = [movies, music, travel, art]
