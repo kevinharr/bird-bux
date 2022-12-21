@@ -6,7 +6,7 @@ import {travel} from "../data/data.js"
 import {art} from "../data/data.js"
 
 /*---------------------------- Variables (state) ----------------------------*/
-let board, turn, winner, tie, round, questionNumber, categoryHolder, playerOneScore, playerTwoScore, questions, correctAnswer
+let board, turn, winner, tie, round, questionNumber, categoryHolder, playerOneScore, playerTwoScore, questions, correctAnswer, winnerOfGame
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -40,57 +40,39 @@ function init() {
     board = [null, null, null, null]
     turn = 1
     winner = false
+    winnerOfGame = ""
     tie = false
     questions = [null, null, null, null, null, null]
     questionNumber = 0
     categoryHolder = []
     playerOneScore = 0
     playerTwoScore = 0
+    render()  
 }
 
+function render() {
+    updateBoard()
+    updateMessage()
+}
 
-//     placePiece(sqIdx)
-//     checkForTie ()
-//     checkForWinner ()
-//     switchPlayerTurn ()
-//     render()
-//     }
-//   }
-
-//   function updateBoard() {
-//     board.forEach(function(element, index){
-//         if (element === 1) {
-//             itemEls[index].textContent = "C"
-//         } else if (element === null) {
-//             itemEls[index].textContent = ""
-//         } 
-//     }        
-// )
-// }
-
-// function render() {
-//     updateBoard()
-//     updateMessage()
-// }
-
-
+/* SELECTING A CATEGORY FROM FOUR THEMES: MOVIES, MUSIC, TRAVEL, ART*/
 
 function buttonClick(evt) {
     const category = evt.target.id
     if (category === "movies") {
-        categoryHolder.push(category)
+        categoryHolder.unshift(category)
         movieQuestions(questionNumber)
     }
     if (category === "music") {
-        categoryHolder.push(category)
+        categoryHolder.unshift(category)
         musicQuestions(questionNumber)
     }
     if (category === "travel") {
-        categoryHolder.push(category)
+        categoryHolder.unshift(category)
         travelQuestions(questionNumber)
     }
     if (category === "art") {
-        categoryHolder.push(category)
+        categoryHolder.unshift(category)
         artQuestions(questionNumber)
     }
     answerSquares = document.querySelectorAll(".sqr")
@@ -99,7 +81,7 @@ function buttonClick(evt) {
     })
 }
 
-/* QUESTION GENERATOR BY CATEGORY*/
+/*--------QUESTION GENERATOR BY CATEGORY----------------------------*/
 
 function movieQuestions(num) {
     questionContainer.innerHTML = ''
@@ -173,28 +155,27 @@ function artQuestions(num) {
 }
 
 
-/*_______________________________________________*/
+/*-------USERS SELECTS THE ANSWER TO THE QUESTION------------------*/
 
 
 function handleClick(evt) {
+    if (winner === true) {
+        return
+    } else {
     let ansIdx = Number((evt.target.id.replace("ans", "")))
     updateBoard(ansIdx)
+    placePiece(ansIdx)
+    updateBoard(ansIdx)
+    checkForTie ()
+    checkForWinner ()
+    countingQuestions ()
+    addBirdBux()
+    switchPlayerTurn ()
+    render()
+    }
     } 
-  
-
-//     if (winner === true){
-//       return
-//     } else {
-//     placePiece(ansIdx)
-//     updateBoard(ansIdx)
-//     checkForTie ()
-//     checkForWinner ()
-//     switchPlayerTurn ()
-//     render()
-//     }
-// }
-
-
+    
+/*--------UPDATE THE GAME BOARD------------------------------------*/
 
 function updateBoard(index) {
     switch(categoryHolder[0]) {     
@@ -232,6 +213,7 @@ function updateBoard(index) {
     }
 } 
 
+/*------UPDATE MESSAGE BOARD-------------------------------------*/
 
 function updateMessage() {
     let PlayerSelected
@@ -248,7 +230,7 @@ function updateMessage() {
     } else if (winner === false && tie === true) {
       messageEl.textContent = "It is a tie."
     } else if (winner === true && tie === false) {
-      messageEl.textContent = `The winner is ${PlayerSelected}.`
+      messageEl.textContent = `The winner is ${winnerOfGame}.`
     }
   }
 
@@ -277,11 +259,10 @@ function checkForTie() {
 
 function checkForWinner() {
     if (playerOneScore > playerTwoScore && questionNumber === 6) {
-        return "Player One is the winner"
+        winnerOfGame = "Player One"
     } else if (playerOneScore < playerTwoScore && questionNumber === 6) {
-        return "Player Two is the winner"
+        winnerOfGame = "Player One"
     }
-
 }
 
 function switchPlayerTurn() {
