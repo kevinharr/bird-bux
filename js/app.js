@@ -4,10 +4,9 @@ import {music} from "../data/data.js"
 import {travel} from "../data/data.js"
 import {art} from "../data/data.js"
 
-//console.log(art)
 
 /*---------------------------- Variables (state) ----------------------------*/
-let board, turn, winner, tie, round, questionNumber
+let board, turn, winner, tie, round, questionNumber, categoryHolder
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -16,9 +15,8 @@ const movieBtn = document.getElementById("movies")
 const musicBtn = document.getElementById("music")
 const travelBtn = document.getElementById("travel")
 const artBtn = document.getElementById("art")
-const questionEl = document.getElementById("question")
 
-//console.log(answerSquares)
+
 const resetBtnEl = document. getElementById("reset-button")
 const questionContainer = document.getElementById("question-container")
 
@@ -43,15 +41,8 @@ function init() {
     tie = false
     round = [null, null, null, null, null, null, null, null, null, null]
     questionNumber = 0
+    categoryHolder = []
 }
-
-// answerSquares.forEach(function(elem) {
-//     elem.addEventListener('click', handleClick)
-// })
-
-// document.querySelectorAll('.sqr').forEach((elem) => elem.addEventListener('click', handleClick));
-
-
 
 
 //     placePiece(sqIdx)
@@ -82,18 +73,20 @@ function init() {
 
 function buttonClick(evt) {
     const category = evt.target.id
-    console.log("capturing what happens with a button click:", category)
-    //console.log(typeof category)
     if (category === "movies") {
+        categoryHolder.push(1)
         movieQuestions(questionNumber)
     }
     if (category === "music") {
+        categoryHolder.push(2)
         musicQuestions(questionNumber)
     }
     if (category === "travel") {
+        categoryHolder.push(3)
         travelQuestions(questionNumber)
     }
     if (category === "art") {
+        categoryHolder.push(4)
         artQuestions(questionNumber)
     }
     answerSquares = document.querySelectorAll(".sqr")
@@ -177,12 +170,8 @@ function artQuestions(num) {
 
 
 function handleClick(evt) {
-    console.log("answer clicked.")
-    // let ansIdx = Number((evt.target.id.replace("ans", "")))
-    // let x = 6
-    // console.log("result of game answer box that was clicked on:", ansIdx, x)
-    // return ansIdx
-    // updateBoard(ansIdx)
+    let ansIdx = Number((evt.target.id.replace("ans", "")))
+    updateBoard(ansIdx)
     } 
   
 
@@ -199,19 +188,27 @@ function handleClick(evt) {
 // }
 
 function updateBoard(index) {
-    if (index === movies[num].correctAnswer) 
-        console.log("index number", index)
-        
-    //     ||
-    //     index === music[num].correctAnswer ||
-    //     index === travel[num].correctAnswer ||
-    //     index === art[num].correctAnswer) {
-    //     answerSquares[index].textContent = "C"
-    // } else {
-    //     answerSquares[index].textContent = ""
-    // }
+    console.log(index)
+    answerSquares[index].className = "selection"
 
-}
+    if (index === movies[questionNumber].correctAnswer) {
+            answerSquares[index].className = "correct"
+            answerSquares[index+1].className = "incorrect"
+            
+    } 
+    }
+
+    //categoryHolder.pop()
+    //}
+//     (index === music[num].correctAnswer) ||
+//     (index === travel[num].correctAnswer) ||
+//     (index === art[num].correctAnswer) {
+//         
+//     } else {
+//    
+//     }
+
+
 
 
 

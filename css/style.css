@@ -41,7 +41,7 @@ button {
 #button-container {
     display:flex;
     flex-direction: row;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     
 }
 
@@ -51,3 +51,15 @@ button {
     justify-content: space-around;
 }
 
+.selection {
+    background-color: yellow;
+}
+.correct {
+    color: white;
+    background-color: green;
+}
+
+.incorrect {
+    color: white;
+    background-color: red;
+}
