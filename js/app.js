@@ -6,7 +6,9 @@ import {travel} from "../data/data.js"
 import {art} from "../data/data.js"
 
 /*---------------------------- Variables (state) ----------------------------*/
+
 let board, turn, winner, tie, round, questionNumber, categoryHolder, playerOneScore, playerTwoScore, questions, correctAnswer, winnerOfGame
+let answerSquares = document.querySelectorAll(".sqr")
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -15,22 +17,18 @@ const movieBtn = document.getElementById("movies")
 const musicBtn = document.getElementById("music")
 const travelBtn = document.getElementById("travel")
 const artBtn = document.getElementById("art")
-
-
 const resetBtnEl = document.getElementById("reset-button")
 const nextBtnEl = document.getElementById("next-button")
-
 const questionContainer = document.getElementById("question-container")
 
-let answerSquares = document.querySelectorAll(".sqr")
-    
-    
 /*-------------------------------- Event Listeners --------------------------------*/
 
 movieBtn.addEventListener('click', buttonClick)
 musicBtn.addEventListener('click', buttonClick)
 travelBtn.addEventListener('click', buttonClick)
 artBtn.addEventListener('click', buttonClick)
+nextBtnEl.addEventListener('click', nextClick)
+resetBtnEl.addEventListener('click', init)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -55,7 +53,7 @@ function render() {
     updateMessage()
 }
 
-/* SELECTING A CATEGORY FROM FOUR THEMES: MOVIES, MUSIC, TRAVEL, ART*/
+/*--SELECTING A CATEGORY FROM FOUR THEMES: MOVIES, MUSIC, TRAVEL, ART--------*/
 
 function buttonClick(evt) {
     const category = evt.target.id
@@ -165,11 +163,10 @@ function handleClick(evt) {
     let ansIdx = Number((evt.target.id.replace("ans", "")))
     updateBoard(ansIdx)
     placePiece(ansIdx)
-    updateBoard(ansIdx)
     checkForTie ()
     checkForWinner ()
-    countingQuestions ()
     addBirdBux()
+    questionIncrementor ()
     switchPlayerTurn ()
     render()
     }
@@ -246,7 +243,7 @@ function placePiece(index) {
     board[index] = turn
 }
 
-function countingQuestions () {
+function questionIncrementor () {
     questionNumber = questionNumber + 1
     return questionNumber
 }
@@ -274,9 +271,17 @@ function switchPlayerTurn() {
   }
 
 function nextClick(evt) {
-    const category = evt.target.id
+    if (categoryHolder[0] = "movies") {
+        movieQuestions(questionNumber)
+    } else if (categoryHolder[0] = "music") {
+        musicQuestions(questionNumber)
+    } else if (categoryHolder[0] = "travel") {
+        travelQuestions(questionNumber)
+    } else if (categoryHolder[0] = "art") {  
+        artQuestions(questionNumber)   
+    } 
 }
 
-nextBtnEl.addEventListener('click', nextClick)
 
-resetBtnEl.addEventListener('click', init)
+
+
