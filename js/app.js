@@ -1,12 +1,12 @@
 /*-------------------------------- Constants --------------------------------*/
+
 import {movies} from "../data/data.js"
 import {music} from "../data/data.js"
 import {travel} from "../data/data.js"
 import {art} from "../data/data.js"
 
-
 /*---------------------------- Variables (state) ----------------------------*/
-let board, turn, winner, tie, round, questionNumber, categoryHolder
+let board, turn, winner, tie, round, questionNumber, categoryHolder, playerOneScore, playerTwoScore, questions, correctAnswer
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -17,7 +17,9 @@ const travelBtn = document.getElementById("travel")
 const artBtn = document.getElementById("art")
 
 
-const resetBtnEl = document. getElementById("reset-button")
+const resetBtnEl = document.getElementById("reset-button")
+const nextBtnEl = document.getElementById("next-button")
+
 const questionContainer = document.getElementById("question-container")
 
 let answerSquares = document.querySelectorAll(".sqr")
@@ -39,9 +41,11 @@ function init() {
     turn = 1
     winner = false
     tie = false
-    round = [null, null, null, null, null, null, null, null, null, null]
+    questions = [null, null, null, null, null, null]
     questionNumber = 0
     categoryHolder = []
+    playerOneScore = 0
+    playerTwoScore = 0
 }
 
 
@@ -190,89 +194,46 @@ function handleClick(evt) {
 //     }
 // }
 
-// function updateBoard(index) {
-//     console.log(categoryHolder)
-//     if (categoryHolder === 'movies') {
-//         console.log("kph1")
-//         if (index === movies[questionNumber].correctAnswer) {
-//             answerSquares[index].className = "correct" 
-//         }
-//         if (index !== movies[questionNumber].correctAnswer) {
-//         answerSquares[index].className = "incorrect"
-//         console.log("kph2")
-//     }  
-// categoryHolder.pop()
-//     }
-//     console.log("kph3")
-//     if (categoryHolder === 'music') {
-//         if (index === music[questionNumber].correctAnswer) {
-//             answerSquares[index].className = "correct" 
-//         }
-//         if (index !== music[questionNumber].correctAnswer) {
-//         answerSquares[index].className = "incorrect"
-//     } 
-//     }
-//     if (categoryHolder === 'travel') {
-//         if (index === travel[questionNumber].correctAnswer) {
-//             answerSquares[index].className = "correct" 
-//         }
-//         if (index !== travel[questionNumber].correctAnswer) {
-//         answerSquares[index].className = "incorrect"
-//     } 
-//     }
-//     if (categoryHolder === 'art') {
-//         if (index === art[questionNumber].correctAnswer) {
-//             answerSquares[index].className = "correct" 
-//         }
-//         if (index !== art[questionNumber].correctAnswer) {
-//         answerSquares[index].className = "incorrect"
-//     } 
-//     }
-   
-// } 
+
 
 function updateBoard(index) {
-    console.log(categoryHolder)
     switch(categoryHolder[0]) {     
         case "movies":
-            console.log("kph1")
             if (index === movies[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
+                correctAnswer = true
             }
             if (index !== movies[questionNumber].correctAnswer) {
                 answerSquares[index].className = "incorrect"}
             break;
         case "music":
-            console.log("kph2")
             if (index === music[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
+                correctAnswer = true
                 }
             if (index !== music[questionNumber].correctAnswer) {
                 answerSquares[index].className = "incorrect"} 
             break;
         case "travel":
-            console.log("kph3")
             if (index === travel[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
                 }
+                correctAnswer = true
             if (index !== travel[questionNumber].correctAnswer) {
                 answerSquares[index].className = "incorrect"}
             break;
         case "art":
-            console.log("kph4")
             if (index === art[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
                 }
+                correctAnswer = true
             if (index !== art[questionNumber].correctAnswer) {
-                answerSquares[index].className = "incorrect"}  
-        console.log("kph5") 
-       
+                answerSquares[index].className = "incorrect"}       
     }
 } 
 
 
 function updateMessage() {
-  
     let PlayerSelected
     let PlayerOne = "Player One"
     let PlayerTwo = "Player Two"
@@ -291,88 +252,50 @@ function updateMessage() {
     }
   }
 
-//   function handleClick(evt) {
-//     const sqIdx = evt.target.id.replace("sq", "")
-//     if (board[Number(sqIdx)] !== null) {
-//       return
-//     } 
-//     else if (winner === true){
-//       return
-//     } else {
-//     placePiece(sqIdx)
-//     checkForTie ()
-//     checkForWinner ()
-//     switchPlayerTurn ()
-//     render()
-//     }
-//   }
+function addBirdBux() {
+    if (turn === 1 && correctAnswer === true) {
+        playerOneScore = playerOneScore + 100
+    } else if (turn === -1 && correctAnswer === true) {
+        playerTwoScore = playerTwoScore + 100
+    }
+}
 
-//   function placePiece(index) {
-//     board[index] = turn
-//   }
+function placePiece(index) {
+    board[index] = turn
+}
 
-//   function checkForTie() {
-//     if (board.includes(null)) {
-//       return
-//     } else {
-//       tie = true
-//     }
-//   }
+function countingQuestions () {
+    questionNumber = questionNumber + 1
+    return questionNumber
+}
 
-//   function checkForWinner() {
-//     for (let i = 0; i < winningCombos.length; i++) {
-//       let sum = 0
-//       for (let c = 0; c < 3; c++) {
-//         sum += board[winningCombos[i][c]]
-//         if (Math.abs(sum) === 3)  {
-//           winner = true
-//         }
-//       }   
-//     }
-//   }
+function checkForTie() {
+    if (playerOneScore === playerTwoScore && questionNumber === 6) {
+        tie = true
+    }
+}
 
-//   function switchPlayerTurn() {
-//     if (winner === true) {
-//       return
-//     } else {
-//     turn = turn * -1
-//   }
-//   }
+function checkForWinner() {
+    if (playerOneScore > playerTwoScore && questionNumber === 6) {
+        return "Player One is the winner"
+    } else if (playerOneScore < playerTwoScore && questionNumber === 6) {
+        return "Player Two is the winner"
+    }
 
-//   resetBtnEl.addEventListener('click', init)
+}
 
+function switchPlayerTurn() {
+    if (winner === true) {
+      return
+    } else {
+    turn = turn * -1
+  }
+  }
 
+function nextClick(evt) {
+    const category = evt.target.id
+}
 
+nextBtnEl.addEventListener('click', nextClick)
 
-
-
-/*______________Excess Code____________________*/
-
-
-
-// function populateQuestions(buttonClick) {
-//     let questionSet = buttonClick
-//     console.log("return function", questionSet)
-//     i = Math.floor(Math.random() * 5)
-//     console.log("the meaning of i",i)
-//     questionEl.textContent = "test"
-//     console.log(questionEl.textContent)
-//     answerOneEl.textContent = questionSet[i].answerOne
-//     answerTwoEl.textContent = questionSet[i].answerTwo
-//     answerThreeEl.textContent = questionSet[i].answerThree
-//     answerFourEl.textContent = questionSet[i].answerFour
-// }
-//     const sqIdx = evt.target.id.replace("sq", "")
-//     if (board[Number(sqIdx)] !== null) {
-//       return
-//     } 
-//     else if (winner === true){
-//       return
-//     } else {
-//     placePiece(sqIdx)
-//     checkForTie ()
-//     checkForWinner ()
-//     switchPlayerTurn ()
-//     render()
-//     }
-//   }
+resetBtnEl.addEventListener('click', init)
