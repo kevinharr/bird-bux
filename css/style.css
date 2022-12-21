@@ -9,7 +9,6 @@ body {
 }
 
 div {
-  display: grid;
   align-items:initial;
   border: 1px solid;
   font-size: small;
@@ -41,18 +40,20 @@ button {
 #button-container {
     display:flex;
     flex-direction: row;
-    /* justify-content: space-around; */
+    //justify-content: space-around; */
     
 }
 
 #answer-container {
     display: flex;
+    height: max-content;
     flex-direction: column;
     justify-content: space-around;
 }
 
 .selection {
-    background-color: yellow;
+   border-width: 1px;
+   color: aqua;
 }
 .correct {
     color: white;
@@ -62,4 +63,11 @@ button {
 .incorrect {
     color: white;
     background-color: red;
+}
+
+#play-button-buckets {
+    display: flex;
+    flex-direction: row;
+    width: 100px;
+    border: none
 }
