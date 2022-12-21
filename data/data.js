@@ -12,7 +12,7 @@ const music = [
     { category: "music", question: "Who founded Motown Records", answerOne: "Barrett Strong", answerTwo: "Smokey Robinson",  answerThree: "Berry Gordon", answerFour: "William 'Mickey' Stevenson", correctAnswer: 2},
     { category: "music", question: "What was Madonna's first top 10 hit?", answerOne: "Like a Prayer", answerTwo: "Like a Virgin",  answerThree: "Borderline", answerFour: "Holiday", correctAnswer: 3},
     { category: "music", question: "Who was the first woman ever inducted into the Rock and Roll Hall of Fame", answerOne: "Aretha Franlin", answerTwo: "Janis Joplin",  answerThree: "Grace Slick", answerFour: "Joni Mitchell", correctAnswer: 0},
-    { category: "music", question: "Which Alanis Morissette song contains the phrase 'jagged little pill?", answerOne: "Aaron Sorkin", answerTwo: "You Learn", answerThree: "Paul Schrader", answerFour: "Francis Ford Coppola", correctAnswer: 1},
+    { category: "music", question: "Which Alanis Morissette song contains the phrase 'jagged little pill?", answerOne: "Ironic", answerTwo: "You Learn", answerThree: "Perfect", answerFour: "Wake Up", correctAnswer: 1},
     { category: "music", question: "Who was the first lead guitarist of Metallica?", answerOne: "James Hetfield", answerTwo: "Kirk Hammett", answerThree: "Paul SchraderRon McGovney", answerFour: "Dave Mustaine", correctAnswer: 3},
 ]
 

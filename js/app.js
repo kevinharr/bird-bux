@@ -7,7 +7,7 @@ import {art} from "../data/data.js"
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let board, turn, winner, tie, round, questionNumber, categoryHolder, playerOneScore, playerTwoScore, questions, correctAnswer, winnerOfGame
+let board, turn, winner, tie, questionNumber, categoryHolder, playerOneScore, playerTwoScore, questions, correctAnswer, winnerOfGame
 let answerSquares = document.querySelectorAll(".sqr")
 
 /*------------------------ Cached Element References ------------------------*/
@@ -30,26 +30,29 @@ artBtn.addEventListener('click', buttonClick)
 nextBtnEl.addEventListener('click', nextClick)
 resetBtnEl.addEventListener('click', init)
 
+
+categoryHolder = []
+//console.log(categoryHolder)
 /*-------------------------------- Functions --------------------------------*/
 
 window.onload = init()
 
 function init() {
-    board = [null, null, null, null]
     turn = 1
     winner = false
     winnerOfGame = ""
     tie = false
+    categoryHolder = []
     questions = [null, null, null, null, null, null]
     questionNumber = 0
-    categoryHolder = []
+   
+   
     playerOneScore = 0
     playerTwoScore = 0
     render()  
 }
 
 function render() {
-    updateBoard()
     updateMessage()
 }
 
@@ -58,19 +61,40 @@ function render() {
 function buttonClick(evt) {
     const category = evt.target.id
     if (category === "movies") {
+        //console.log("Category at button click is:", category)
         categoryHolder.unshift(category)
+       // console.log("value of category holder at button click", categoryHolder)
+        movieBtn.disabled = true;
+        musicBtn.disabled = true;
+        travelBtn.disabled = true;
+        artBtn.disabled = true;
         movieQuestions(questionNumber)
     }
     if (category === "music") {
+        //console.log("Category selected is:", category)
         categoryHolder.unshift(category)
+        movieBtn.disabled = true;
+        musicBtn.disabled = true;
+        travelBtn.disabled = true;
+        artBtn.disabled = true;
         musicQuestions(questionNumber)
     }
     if (category === "travel") {
+        //console.log("Category selected is:", category)
         categoryHolder.unshift(category)
+        movieBtn.disabled = true;
+        musicBtn.disabled = true;
+        travelBtn.disabled = true;
+        artBtn.disabled = true;
         travelQuestions(questionNumber)
     }
     if (category === "art") {
+        //console.log("Category selected is:", category)
         categoryHolder.unshift(category)
+        movieBtn.disabled = true;
+        musicBtn.disabled = true;
+        travelBtn.disabled = true;
+        artBtn.disabled = true;
         artQuestions(questionNumber)
     }
     answerSquares = document.querySelectorAll(".sqr")
@@ -153,7 +177,10 @@ function artQuestions(num) {
 }
 
 
+
 /*-------USERS SELECTS THE ANSWER TO THE QUESTION------------------*/
+
+
 
 
 function handleClick(evt) {
@@ -161,8 +188,10 @@ function handleClick(evt) {
         return
     } else {
     let ansIdx = Number((evt.target.id.replace("ans", "")))
-    updateBoard(ansIdx)
-    placePiece(ansIdx)
+    //console.log("The box chosen", ansIdx)
+    updateBoard(ansIdx, categoryHolder)
+    answerSquares.setAttribute("type", "text");
+
     checkForTie ()
     checkForWinner ()
     addBirdBux()
@@ -174,15 +203,18 @@ function handleClick(evt) {
     
 /*--------UPDATE THE GAME BOARD------------------------------------*/
 
-function updateBoard(index) {
-    switch(categoryHolder[0]) {     
+function updateBoard(index, categoryHolder) {
+    console.group("value of categoryholder BEFORE switch conditional:", categoryHolder[0])
+    switch(categoryHolder[0]) {   
         case "movies":
             if (index === movies[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
                 correctAnswer = true
+                console.log(answerSquares[index])
             }
             if (index !== movies[questionNumber].correctAnswer) {
                 answerSquares[index].className = "incorrect"}
+                console.log(answerSquares[index])
             break;
         case "music":
             if (index === music[questionNumber].correctAnswer) {
@@ -193,6 +225,7 @@ function updateBoard(index) {
                 answerSquares[index].className = "incorrect"} 
             break;
         case "travel":
+            console.log("category holder formovies:, categoryHolder[0]")
             if (index === travel[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
                 }
@@ -201,6 +234,7 @@ function updateBoard(index) {
                 answerSquares[index].className = "incorrect"}
             break;
         case "art":
+            console.log("category holder formovies:, categoryHolder[0]")
             if (index === art[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
                 }
@@ -237,10 +271,6 @@ function addBirdBux() {
     } else if (turn === -1 && correctAnswer === true) {
         playerTwoScore = playerTwoScore + 100
     }
-}
-
-function placePiece(index) {
-    board[index] = turn
 }
 
 function questionIncrementor () {
