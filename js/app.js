@@ -101,14 +101,14 @@ function movieQuestions(num) {
     questionContainer.innerHTML = ''
     let questionCard = document.createElement('div')
     questionCard.innerHTML =
-    `<div>
+    `
       <p>${movies[num].question}</p>
       <div id="answer-container">
-       <div class="sqr" id="ans0">${movies[num].answerOne}</dir>
-       <div class="sqr" id="ans1">${movies[num].answerTwo}</dir>
-       <div class="sqr" id="ans2">${movies[num].answerThree}</dir>
-       <div class="sqr" id="ans3">${movies[num].answerFour}</dir>
-    </div>
+         <div class="sqr" id="ans0">${movies[num].answerOne}</div>
+         <div class="sqr" id="ans1">${movies[num].answerTwo}</div>
+         <div class="sqr" id="ans2">${movies[num].answerThree}</div>
+         <div class="sqr" id="ans3">${movies[num].answerFour}</div>
+      </div>
     `
 
     questionContainer.appendChild(questionCard)
@@ -121,10 +121,11 @@ function musicQuestions(num) {
     `<div>
       <p>${music[num].question}</p>
       <div id="answer-container">
-       <div class="sqr" id="ans0">${music[num].answerOne}</dir>
-       <div class="sqr" id="ans1">${music[num].answerTwo}</dir>
-       <div class="sqr" id="ans2">${music[num].answerThree}</dir>
-       <div class="sqr" id="ans3">${music[num].answerFour}</dir>
+         <div class="sqr" id="ans0">${music[num].answerOne}</div>
+         <div class="sqr" id="ans1">${music[num].answerTwo}</div>
+         <div class="sqr" id="ans2">${music[num].answerThree}</div>
+         <div class="sqr" id="ans3">${music[num].answerFour}</div>
+      </div>
     </div>
     `
 
@@ -138,10 +139,11 @@ function travelQuestions(num) {
     `<div>
       <p>${travel[num].question}</p>
       <div id="answer-container">
-       <div class="sqr" id="ans0">${travel[num].answerOne}</dir>
-       <div class="sqr" id="ans1">${travel[num].answerTwo}</dir>
-       <div class="sqr" id="ans2">${travel[num].answerThree}</dir>
-       <div class="sqr" id="ans3">${travel[num].answerFour}</dir>
+         <div class="sqr" id="ans0">${travel[num].answerOne}</div>
+         <div class="sqr" id="ans1">${travel[num].answerTwo}</div>
+         <div class="sqr" id="ans2">${travel[num].answerThree}</div>
+         <div class="sqr" id="ans3">${travel[num].answerFour}</div>
+      </div>
     </div>
     `
 
@@ -155,10 +157,11 @@ function artQuestions(num) {
     `<div>
       <p>${art[num].question}</p>
       <div id="answer-container">
-       <div class="sqr" id="ans0">${art[num].answerOne}</dir>
-       <div class="sqr" id="ans1">${art[num].answerTwo}</dir>
-       <div class="sqr" id="ans2">${art[num].answerThree}</dir>
-       <div class="sqr" id="ans3">${art[num].answerFour}</dir>
+         <div class="sqr" id="ans0">${art[num].answerOne}</div>
+         <div class="sqr" id="ans1">${art[num].answerTwo}</div>
+         <div class="sqr" id="ans2">${art[num].answerThree}</div>
+         <div class="sqr" id="ans3">${art[num].answerFour}</div>
+      </div>
     </div>
     `
 
@@ -189,14 +192,17 @@ function handleClick(evt) {
 
 function updateBoard(index) {
     console.log(index)
-    answerSquares[index].className = "selection"
 
     if (index === movies[questionNumber].correctAnswer) {
-            answerSquares[index].className = "correct"
-            answerSquares[index+1].className = "incorrect"
-            
-    } 
-    }
+            answerSquares[index].className = "correct" 
+            console.log(answerSquares[index])
+    }     
+    if (index !== movies[questionNumber].correctAnswer) {
+        answerSquares[index].className = "incorrect"
+        console.log(answerSquares[index])
+    }   
+} 
+
 
     //categoryHolder.pop()
     //}

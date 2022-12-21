@@ -40,7 +40,7 @@ button {
 #button-container {
     display:flex;
     flex-direction: row;
-    //justify-content: space-around; */
+    /* justify-content: space-around; */
     
 }
 
@@ -66,8 +66,8 @@ button {
 }
 
 #play-button-buckets {
-    display: flex;
+    display;
     flex-direction: row;
     width: 100px;
-    border: none
+    border: none;
 }
