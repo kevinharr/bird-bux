@@ -74,19 +74,19 @@ function init() {
 function buttonClick(evt) {
     const category = evt.target.id
     if (category === "movies") {
-        categoryHolder.push(1)
+        categoryHolder.push(category)
         movieQuestions(questionNumber)
     }
     if (category === "music") {
-        categoryHolder.push(2)
+        categoryHolder.push(category)
         musicQuestions(questionNumber)
     }
     if (category === "travel") {
-        categoryHolder.push(3)
+        categoryHolder.push(category)
         travelQuestions(questionNumber)
     }
     if (category === "art") {
-        categoryHolder.push(4)
+        categoryHolder.push(category)
         artQuestions(questionNumber)
     }
     answerSquares = document.querySelectorAll(".sqr")
@@ -190,53 +190,106 @@ function handleClick(evt) {
 //     }
 // }
 
-function updateBoard(index) {
-    console.log(index)
+// function updateBoard(index) {
+//     console.log(categoryHolder)
+//     if (categoryHolder === 'movies') {
+//         console.log("kph1")
+//         if (index === movies[questionNumber].correctAnswer) {
+//             answerSquares[index].className = "correct" 
+//         }
+//         if (index !== movies[questionNumber].correctAnswer) {
+//         answerSquares[index].className = "incorrect"
+//         console.log("kph2")
+//     }  
+// categoryHolder.pop()
+//     }
+//     console.log("kph3")
+//     if (categoryHolder === 'music') {
+//         if (index === music[questionNumber].correctAnswer) {
+//             answerSquares[index].className = "correct" 
+//         }
+//         if (index !== music[questionNumber].correctAnswer) {
+//         answerSquares[index].className = "incorrect"
+//     } 
+//     }
+//     if (categoryHolder === 'travel') {
+//         if (index === travel[questionNumber].correctAnswer) {
+//             answerSquares[index].className = "correct" 
+//         }
+//         if (index !== travel[questionNumber].correctAnswer) {
+//         answerSquares[index].className = "incorrect"
+//     } 
+//     }
+//     if (categoryHolder === 'art') {
+//         if (index === art[questionNumber].correctAnswer) {
+//             answerSquares[index].className = "correct" 
+//         }
+//         if (index !== art[questionNumber].correctAnswer) {
+//         answerSquares[index].className = "incorrect"
+//     } 
+//     }
+   
+// } 
 
-    if (index === movies[questionNumber].correctAnswer) {
-            answerSquares[index].className = "correct" 
-            console.log(answerSquares[index])
-    }     
-    if (index !== movies[questionNumber].correctAnswer) {
-        answerSquares[index].className = "incorrect"
-        console.log(answerSquares[index])
-    }   
+function updateBoard(index) {
+    console.log(categoryHolder)
+    switch(categoryHolder[0]) {     
+        case "movies":
+            console.log("kph1")
+            if (index === movies[questionNumber].correctAnswer) {
+                answerSquares[index].className = "correct" 
+            }
+            if (index !== movies[questionNumber].correctAnswer) {
+                answerSquares[index].className = "incorrect"}
+            break;
+        case "music":
+            console.log("kph2")
+            if (index === music[questionNumber].correctAnswer) {
+                answerSquares[index].className = "correct" 
+                }
+            if (index !== music[questionNumber].correctAnswer) {
+                answerSquares[index].className = "incorrect"} 
+            break;
+        case "travel":
+            console.log("kph3")
+            if (index === travel[questionNumber].correctAnswer) {
+                answerSquares[index].className = "correct" 
+                }
+            if (index !== travel[questionNumber].correctAnswer) {
+                answerSquares[index].className = "incorrect"}
+            break;
+        case "art":
+            console.log("kph4")
+            if (index === art[questionNumber].correctAnswer) {
+                answerSquares[index].className = "correct" 
+                }
+            if (index !== art[questionNumber].correctAnswer) {
+                answerSquares[index].className = "incorrect"}  
+        console.log("kph5") 
+       
+    }
 } 
 
 
-    //categoryHolder.pop()
-    //}
-//     (index === music[num].correctAnswer) ||
-//     (index === travel[num].correctAnswer) ||
-//     (index === art[num].correctAnswer) {
-//         
-//     } else {
-//    
-//     }
-
-
-
-
-
-// function updateMessage() {
+function updateMessage() {
   
-//     let PlayerSelected
-//     let PlayerOne = "Player One"
-//     let PlayerTwo = "Player Two"
+    let PlayerSelected
+    let PlayerOne = "Player One"
+    let PlayerTwo = "Player Two"
    
-//     if (turn === 1) {
-//       PlayerSelected = PlayerOne
-//     } else if (turn === -1) {
-//       PlayerSelected = PlayerTwo
-//     }
-//     if (winner === false && tie === false) {
-//       messageEl.textContent = `It is the turn of ${PlayerSelected}.`
-//     } else if (winner === false && tie === true) {
-//       messageEl.textContent = "It is a tie."
-//     } else if (winner === true && tie === false) {
-//       messageEl.textContent = `The winner is ${PlayerSelected}.`
-//     }
-//   }
+    if (turn === 1) {
+      PlayerSelected = PlayerOne
+    } else if (turn === -1) {
+      PlayerSelected = PlayerTwo
+    }
+    if (winner === false && tie === false) {
+      messageEl.textContent = `It is the turn of ${PlayerSelected}.`
+    } else if (winner === false && tie === true) {
+      messageEl.textContent = "It is a tie."
+    } else if (winner === true && tie === false) {
+      messageEl.textContent = `The winner is ${PlayerSelected}.`
+    }
+  }
 
 //   function handleClick(evt) {
 //     const sqIdx = evt.target.id.replace("sq", "")
