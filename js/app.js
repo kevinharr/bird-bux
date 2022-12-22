@@ -27,12 +27,11 @@ movieBtn.addEventListener('click', buttonClick)
 musicBtn.addEventListener('click', buttonClick)
 travelBtn.addEventListener('click', buttonClick)
 artBtn.addEventListener('click', buttonClick)
-nextBtnEl.addEventListener('click', nextClick)
+nextBtnEl.addEventListener('click', nextQuestionClick)
 resetBtnEl.addEventListener('click', init)
 
-
 categoryHolder = []
-//console.log(categoryHolder)
+
 /*-------------------------------- Functions --------------------------------*/
 
 window.onload = init()
@@ -118,6 +117,11 @@ function movieQuestions(num) {
     `
 
     questionContainer.appendChild(questionCard)
+    
+    answerSquares = document.querySelectorAll(".sqr")
+    answerSquares.forEach(function(elem) {
+        elem.addEventListener('click', handleClick)
+    })
 }
 
 function musicQuestions(num) {
@@ -136,6 +140,11 @@ function musicQuestions(num) {
     `
 
     questionContainer.appendChild(questionCard)
+
+    answerSquares = document.querySelectorAll(".sqr")
+    answerSquares.forEach(function(elem) {
+        elem.addEventListener('click', handleClick)
+    })
   
 }
 
@@ -155,6 +164,11 @@ function travelQuestions(num) {
     `
 
     questionContainer.appendChild(questionCard)
+
+    answerSquares = document.querySelectorAll(".sqr")
+    answerSquares.forEach(function(elem) {
+        elem.addEventListener('click', handleClick)
+    })
 }
 
 function artQuestions(num) {
@@ -173,6 +187,11 @@ function artQuestions(num) {
     `
 
     questionContainer.appendChild(questionCard)
+
+    answerSquares = document.querySelectorAll(".sqr")
+    answerSquares.forEach(function(elem) {
+        elem.addEventListener('click', handleClick)
+    })
 }
 
 
@@ -195,7 +214,9 @@ function handleClick(evt) {
     })
     checkForTie ()
     checkForWinner ()
+    //console.log("question increments", questionNumber)
     questionIncrementor ()
+    //console.log("question increments", questionNumber)
     switchPlayerTurn ()
     render()
     }
@@ -204,7 +225,6 @@ function handleClick(evt) {
 /*--------UPDATE THE GAME BOARD------------------------------------*/
 
 function updateBoard(index, categoryHolder) {
-    //console.group("value of categoryholder BEFORE switch conditional:", categoryHolder[0])
     switch(categoryHolder[0]) {   
         case "movies":
             if (index === movies[questionNumber].correctAnswer) {
@@ -321,10 +341,12 @@ function switchPlayerTurn() {
   }
   }
 
-function nextClick(evt) {
+function nextQuestionClick(evt) {
+    console.log("category holder value", categoryHolder[0])
     if (categoryHolder[0] = "movies") {
         movieQuestions(questionNumber)
     } else if (categoryHolder[0] = "music") {
+
         musicQuestions(questionNumber)
     } else if (categoryHolder[0] = "travel") {
         travelQuestions(questionNumber)
