@@ -7,7 +7,7 @@ import {art} from "../data/data.js"
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let turn, winner, tie, questionNumber, categoryHolder, playerOneScore, playerTwoScore, questions, correctAnswer, winnerOfGame, answerCorrect
+let turn, winner, tie, questionNumber, categoryHolder, playerOneScore, playerTwoScore, questions, winnerOfGame, answerCorrect
 let answerSquares = document.querySelectorAll(".sqr")
 
 /*------------------------ Cached Element References ------------------------*/
@@ -59,7 +59,7 @@ function render() {
 function buttonClick(evt) {
     const category = evt.target.id
     if (category === "movies") {
-        categoryHolder.unshift(category)
+        categoryHolder.unshift("movies")
         movieBtn.disabled = true;
         musicBtn.disabled = true;
         travelBtn.disabled = true;
@@ -67,7 +67,7 @@ function buttonClick(evt) {
         movieQuestions(questionNumber)
     }
     if (category === "music") {
-        categoryHolder.unshift(category)
+        categoryHolder.unshift("music")
         movieBtn.disabled = true;
         musicBtn.disabled = true;
         travelBtn.disabled = true;
@@ -75,7 +75,7 @@ function buttonClick(evt) {
         musicQuestions(questionNumber)
     }
     if (category === "travel") {
-        categoryHolder.unshift(category)
+        categoryHolder.unshift("travel")
         movieBtn.disabled = true;
         musicBtn.disabled = true;
         travelBtn.disabled = true;
@@ -83,7 +83,7 @@ function buttonClick(evt) {
         travelQuestions(questionNumber)
     }
     if (category === "art") {
-        categoryHolder.unshift(category)
+        categoryHolder.unshift("art")
         movieBtn.disabled = true;
         musicBtn.disabled = true;
         travelBtn.disabled = true;
@@ -250,7 +250,6 @@ function updateBoard(index, categoryHolder) {
                 addBirdBux(answerCorrect) 
             break;
         case "travel":
-            console.log("category holder formovies:, categoryHolder[0]")
             if (index === travel[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
                 }
@@ -318,17 +317,17 @@ function questionIncrementor () {
 
 function checkForTie() {
     console.log("question number value", questionNumber)
-    if (playerOneScore === playerTwoScore && questionNumber === 5) {
+    if (playerOneScore === playerTwoScore && questionNumber === 6) {
         tie = true
     }
 }
 
 function checkForWinner() {
     console.log("question number value", questionNumber)
-    if (playerOneScore > playerTwoScore && questionNumber === 5) {
+    if (playerOneScore > playerTwoScore && questionNumber === 6) {
         winner = true
         winnerOfGame = "Player One"
-    } else if (playerOneScore < playerTwoScore && questionNumber === 5) {
+    } else if (playerOneScore < playerTwoScore && questionNumber === 6) {
         winner = true
         winnerOfGame = "Player Two"
     }
@@ -343,13 +342,15 @@ function switchPlayerTurn() {
   }
 
 function nextQuestionClick(evt) {
-    if (categoryHolder[0] = "movies") {
+    console.log(categoryHolder[0])
+    console.log(categoryHolder)
+    if (categoryHolder[0] === "movies") {
         movieQuestions(questionNumber)
-    } else if (categoryHolder[0] = "music") {
+    } else if (categoryHolder[0] === "music") {
         musicQuestions(questionNumber)
-    } else if (categoryHolder[0] = "travel") {
+    } else if (categoryHolder[0] === "travel") {
         travelQuestions(questionNumber)
-    } else if (categoryHolder[0] = "art") { 
+    } else if (categoryHolder[0] === "art") { 
         artQuestions(questionNumber)   
     } 
     

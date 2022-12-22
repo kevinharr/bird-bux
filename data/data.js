@@ -2,7 +2,7 @@ const movies = [
     { category: "movies", question: "Who wrote the screenplay for 1983's Scarface?", answerOne: "Aaron Sorkin", answerTwo: "Oliver Stone",  answerThree: "Paul Schrader", answerFour: "Francis Ford Coppola", correctAnswer: 1},
     { category: "movies", question: "What’s the name of Meatloaf’s character in The Rocky Horror Picture Show?", answerOne: "Henry", answerTwo: "Eddie",  answerThree: "Chuck", answerFour: " Al", correctAnswer: 1},
     { category: "movies", question: "Where were The Lord of the Rings movies filmed?", answerOne: "Ireland", answerTwo: "Iceland",  answerThree: "New Zealand", answerFour: "Australia", correctAnswer: 2},
-    { category: "movies", question: "Which actor was in the following movies: The Outsiders, Wayne’s World, and Tommy Boy", answerOne: "Tom Cruise", answerTwo: "Matt Dillon",  answerThree: "Rob Lowe", answerFour: "C. Thomas Howell", correctAnswer: 2},
+    { category: "movies", question: "Which actor was in the following movies: The Outsiders, Wayne’s World, and Tommy Boy?", answerOne: "Tom Cruise", answerTwo: "Matt Dillon",  answerThree: "Rob Lowe", answerFour: "C. Thomas Howell", correctAnswer: 2},
     { category: "movies", question: "What was the top-grossing movie of 2014?", answerOne: "The Hunger Games: Mockingjay Part 1", answerTwo: "The Lego Movie",  answerThree: "Captain America: The Winter Soldier", answerFour: "Guardians of the Galaxy", correctAnswer: 3},
     { category: "movies", question: "Who directed the hit 2017 movie Get Out?", answerOne: "James Wan", answerTwo: "Jordan Peele",  answerThree: "Guillermo del Toro", answerFour: "Tim Story", correctAnswer: 1},
     { category: "movies", question: "The code in The Matrix comes from what food recipes?", answerOne: "Sushi recipes", answerTwo: "Dumpling recipes",  answerThree: "Stir-fry recipes", answerFour: "Pad thai recipes", correctAnswer: 0},
@@ -14,7 +14,7 @@ const music = [
     { category: "music", question: "What was Madonna's first top 10 hit?", answerOne: "Like a Prayer", answerTwo: "Like a Virgin",  answerThree: "Borderline", answerFour: "Holiday", correctAnswer: 3},
     { category: "music", question: "Who was the first woman ever inducted into the Rock and Roll Hall of Fame", answerOne: "Aretha Franlin", answerTwo: "Janis Joplin",  answerThree: "Grace Slick", answerFour: "Joni Mitchell", correctAnswer: 0},
     { category: "music", question: "Which Alanis Morissette song contains the phrase 'jagged little pill?", answerOne: "Ironic", answerTwo: "You Learn", answerThree: "Perfect", answerFour: "Wake Up", correctAnswer: 1},
-    { category: "music", question: "Who was the first lead guitarist of Metallica?", answerOne: "James Hetfield", answerTwo: "Kirk Hammett", answerThree: "Paul SchraderRon McGovney", answerFour: "Dave Mustaine", correctAnswer: 3},
+    { category: "music", question: "Who was the first lead guitarist of Metallica?", answerOne: "James Hetfield", answerTwo: "Kirk Hammett", answerThree: "Ron McGovney", answerFour: "Dave Mustaine", correctAnswer: 3},
     { category: "music", question: "As a child, what singer held the longest note ever on Star Search?", answerOne: "Christina Aguilera", answerTwo: "Justin Timberlake", answerThree: "Usher", answerFour: "Britney Spears", correctAnswer: 2},
 ]
 const travel = [
