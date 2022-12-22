@@ -10,7 +10,8 @@ import {art} from "../data/data.js"
 let turn, winner, tie, questionNumber, categoryHolder, playerOneScore, playerTwoScore, winnerOfGame, answerCorrect, questions
 let answerSquares = document.querySelectorAll(".sqr")
 let countdownEl = document.getElementById("countdown")
-let timeLeft = 10
+let timeLeft
+let timerInterval
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -25,6 +26,9 @@ const questionContainer = document.getElementById("question-container")
 const correctSound = new Audio('../sounds/correct-answer.wav')
 const incorrectSound = new Audio('../sounds/incorrect-answer2.mp3')
 const timeOutSound = new Audio('../sounds/time-out-buzzer.wav')
+const playerOneScoreMessage = document.getElementById(playerOneScore)
+const playerTwoScoreMessage = document.getElementById(playerTwoScore)
+
 
 /*-------------------------------- Event Listeners --------------------------------*/
 
@@ -47,6 +51,7 @@ function init() {
     musicBtn.disabled = false;
     travelBtn.disabled = false;
     artBtn.disabled = false;
+    nextBtnEl.disabled = false;
     turn = 1
     winner = false
     winnerOfGame = ""
@@ -59,37 +64,54 @@ function init() {
     render()  
 }
 
-
 function render() {
     updateMessage()
 }
 
-/*--SELECTING A CATEGORY FROM FOUR THEMES: MOVIES, MUSIC, TRAVEL, ART--------*/
+/*--PLAYING SOUNDS-----------------------------------------------------------*/
 
 function playTimeoutSound () {
     timeOutSound.volume = .20
     timeOutSound.play()
 }
 
+function playCorrectSound () {
+    correctSound.volume = .20
+    correctSound.play()
+}
+
+function playIncorrectSound () {
+    incorrectSound.volume = .20
+    incorrectSound.play()
+}
+
+/*--SELECTING A CATEGORY FROM FOUR THEMES: MOVIES, MUSIC, TRAVEL, ART--------*/
+
+
+
+function startTimer(){
+  if (timerInterval){
+    clearInterval(timerInterval)
+  }
+  timeLeft = 10
+  timerInterval = setInterval(function() {
+    countdownEl.textContent = timeLeft + ` Seconds Remaining `
+    timeLeft -= 1
+    if (timeLeft < 0) {
+      clearInterval(timerInterval)
+      playTimeoutSound ()
+    } 
+  }, 1000);
+}
+
+function stopTimer () {
+    if (timerInterval){
+        clearInterval(timerInterval)
+}
+    }
 
 function buttonClick(evt) {
-    
-    timeLeft = 10
-
-    let timer = setInterval(function() {
-        countdownEl.textContent = timeLeft + ` seconds remaining!`
-        timeLeft -= 1
-        console.log(timeLeft)
-        if (timeLeft = 0) {
-            countdownEl.textcontent = `Finished!`
-            playTimeoutSound ()
-            clearInterval(timer)
-        } else if (answerSquares[index].className === "correct" 
-        ||  answerSquares[index].className === "incorrect")
-            {countdownEl.textcontent = ``
-            clearInterval(timer)
-        }
-    }, 1000)
+    console.log("hello")
 
     const category = evt.target.id
     if (category === "movies") {
@@ -99,6 +121,8 @@ function buttonClick(evt) {
         travelBtn.disabled = true;
         artBtn.disabled = true;
         movieQuestions(questionNumber)
+        startTimer()
+
     }
     if (category === "music") {
         categoryHolder.unshift("music")
@@ -107,6 +131,7 @@ function buttonClick(evt) {
         travelBtn.disabled = true;
         artBtn.disabled = true;
         musicQuestions(questionNumber)
+        startTimer()
     }
     if (category === "travel") {
         categoryHolder.unshift("travel")
@@ -115,6 +140,7 @@ function buttonClick(evt) {
         travelBtn.disabled = true;
         artBtn.disabled = true;
         travelQuestions(questionNumber)
+        startTimer()
     }
     if (category === "art") {
         categoryHolder.unshift("art")
@@ -123,6 +149,7 @@ function buttonClick(evt) {
         travelBtn.disabled = true;
         artBtn.disabled = true;
         artQuestions(questionNumber)
+        startTimer()
     }
     answerSquares = document.querySelectorAll(".sqr")
     answerSquares.forEach(function(elem) {
@@ -130,7 +157,15 @@ function buttonClick(evt) {
     })
 }
 
+/*-------TIMERS--------------------------------------------------*/
+
+
+   
+
+
+
 /*--------QUESTION GENERATOR BY CATEGORY----------------------------*/
+
 
 function movieQuestions(num) {
     questionContainer.innerHTML = ''
@@ -151,8 +186,10 @@ function movieQuestions(num) {
     answerSquares = document.querySelectorAll(".sqr")
     answerSquares.forEach(function(elem) {
         elem.addEventListener('click', handleClick)
-    })
-}
+    }
+    )
+}   
+   
 
 function musicQuestions(num) {
     questionContainer.innerHTML = ''
@@ -174,7 +211,8 @@ function musicQuestions(num) {
     answerSquares = document.querySelectorAll(".sqr")
     answerSquares.forEach(function(elem) {
         elem.addEventListener('click', handleClick)
-    })
+    }
+    )
   
 }
 
@@ -198,7 +236,8 @@ function travelQuestions(num) {
     answerSquares = document.querySelectorAll(".sqr")
     answerSquares.forEach(function(elem) {
         elem.addEventListener('click', handleClick)
-    })
+    }
+    )
 }
 
 function artQuestions(num) {
@@ -241,14 +280,8 @@ function handleClick(evt) {
     updateBoard(ansIdx, categoryHolder)
     answerSquares.forEach(function(elem) {
         elem.removeEventListener('click', handleClick)
-    })
-
-    
-
-    
-
-
-
+    }
+    )
 
     questionIncrementor ()
     updateMessage()
@@ -257,17 +290,9 @@ function handleClick(evt) {
     switchPlayerTurn ()
     render()
     }
-    } 
+} 
 
-    function playCorrectSound () {
-        correctSound.volume = .20
-        correctSound.play()
-    }
-
-    function playIncorrectSound () {
-        incorrectSound.volume = .20
-        incorrectSound.play()
-    }
+    
 /*--------UPDATE THE GAME BOARD------------------------------------*/
 
 function updateBoard(index, categoryHolder) {
@@ -277,23 +302,30 @@ function updateBoard(index, categoryHolder) {
                 answerSquares[index].className = "correct" 
 
                 playCorrectSound ()
-               
+                stopTimer ()        
                 answerCorrect = true
                 addBirdBux(answerCorrect)
+
+                return answerSquares[index].className
             }
+          
             if (index !== movies[questionNumber].correctAnswer) {
-                answerSquares[index].className = "incorrect"}  
+                answerSquares[index].className = "incorrect"
+                  
 
                 playIncorrectSound ()
+                stopTimer ()
                 
                 answerCorrect = false
                 addBirdBux(answerCorrect) 
+                }
             break;
         case "music":
             if (index === music[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
 
                 playCorrectSound ()
+                stopTimer ()  
                 
                 answerCorrect = true
                 addBirdBux(answerCorrect)
@@ -302,6 +334,7 @@ function updateBoard(index, categoryHolder) {
                 answerSquares[index].className = "incorrect"} 
 
                 playIncorrectSound ()
+                stopTimer ()  
                 
                 answerCorrect = false
                 addBirdBux(answerCorrect) 
@@ -312,6 +345,7 @@ function updateBoard(index, categoryHolder) {
                 }
 
                 playCorrectSound ()
+                stopTimer ()  
                
                 answerCorrect = true
                 addBirdBux(answerCorrect)
@@ -319,6 +353,7 @@ function updateBoard(index, categoryHolder) {
                 answerSquares[index].className = "incorrect"}
 
                 playIncorrectSound ()
+                stopTimer ()  
                
                 answerCorrect = false
                 addBirdBux(answerCorrect) 
@@ -330,6 +365,7 @@ function updateBoard(index, categoryHolder) {
                 }
 
                 playCorrectSound ()
+                stopTimer ()  
                
                 answerCorrect = true
                 addBirdBux(answerCorrect)
@@ -337,6 +373,7 @@ function updateBoard(index, categoryHolder) {
                 answerSquares[index].className = "incorrect"} 
                 
                 playIncorrectSound ()
+                stopTimer ()  
                 
                 answerCorrect = false
                 addBirdBux(answerCorrect)  
@@ -362,36 +399,44 @@ function updateMessage() {
     } else if (winner === true && tie === false) {
       messageEl.textContent = `The winner is ${winnerOfGame}.`
     }
-  }
+}
+
+
+  /*---UPDATE STATES OF THE GAME----------------------------------*/
 
 function addBirdBux(answerCorrect) {
     if (turn === 1 && answerCorrect === true) {
         playerOneScore = playerOneScore + 100
+        playerOneScoreMessage.textContent = playerOneScore
     } else if (turn === -1 && answerCorrect === true) {
         playerTwoScore = playerTwoScore + 100
+        playerTwoScoreMessage.textContent = playerTwoScore
     }
 }
 
 function questionIncrementor () {
     questionNumber = questionNumber + 1
     return questionNumber
-    
 }
 
 function checkForTie() {
     if (playerOneScore === playerTwoScore && questionNumber === 6) {
         tie = true
+        nextBtnEl.disabled = true;
         questionContainer.innerHTML = ''
     }
 }
 
+
 function checkForWinner() {
     if (playerOneScore > playerTwoScore && questionNumber === 6) {
         winner = true
+        nextBtnEl.disabled = true;
         winnerOfGame = "Player One"
         questionContainer.innerHTML = ''
     } else if (playerOneScore < playerTwoScore && questionNumber === 6) {
         winner = true
+        nextBtnEl.disabled = true;
         winnerOfGame = "Player Two"
         questionContainer.innerHTML = ''
     }
@@ -402,8 +447,10 @@ function switchPlayerTurn() {
       return
     } else {
     turn = turn * -1
-  }
-  }
+    }
+}
+
+/*---REFRESH THE QUESTION OR THE EXERCISE----------------------------------*/
 
 function nextQuestionClick(evt) {
 
@@ -420,7 +467,5 @@ function nextQuestionClick(evt) {
 }
 
 resetBtnEl.addEventListener('click', init)
-
-
 
 

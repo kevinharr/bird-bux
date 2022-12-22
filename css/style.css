@@ -8,13 +8,17 @@ body {
   flex-direction: column;
 }
 
+#question-container {
+    width: 350px;
+}
+
+
 div {
   align-items:initial;
   border: 1px solid;
   font-size: small;
   text-align: center;
   vertical-align: middle;
-
 }
 
 h1 {
@@ -42,7 +46,11 @@ button {
 #button-container {
     display:flex;
     flex-direction: row;
-    /* justify-content: space-around; */
+    width: 350px;
+    justify-content: space-around;
+    border: none;
+    margin: 10px;
+
     
 }
 
@@ -66,12 +74,40 @@ button {
 #play-button-buckets {
     display: flex;
     flex-direction: row;
-    width: 100px;
+    width: 200px;
     border: none;
-    justify-content: space-between;
+    justify-content:space-evenly
 }
 
 #countdown {
     width: 200px;
     height: 100px;
+    border: none;
+    font-size: 20px;
+}
+
+#timer-container {
+    margin: 10px;
+    width: 100px;
+    border: none;
+}
+
+#player-scores-holder {
+    display:flex;
+    flex-direction: rows;
+    justify-content: space-around;
+    border: none;
+    width: 300px;
+}
+
+#player-one-box {
+    border: none;
+}
+
+#player-two-box {
+    border: none;
+}
+
+#reset-button {
+    padding: 10px;
 }
