@@ -7,8 +7,10 @@ import {art} from "../data/data.js"
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let turn, winner, tie, questionNumber, categoryHolder, playerOneScore, playerTwoScore, questions, winnerOfGame, answerCorrect
+let turn, winner, tie, questionNumber, categoryHolder, playerOneScore, playerTwoScore, winnerOfGame, answerCorrect, questions
 let answerSquares = document.querySelectorAll(".sqr")
+let countdownEl = document.getElementById("countdown")
+let timeLeft = 10
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -22,6 +24,7 @@ const nextBtnEl = document.getElementById("next-button")
 const questionContainer = document.getElementById("question-container")
 const correctSound = new Audio('../sounds/correct-answer.wav')
 const incorrectSound = new Audio('../sounds/incorrect-answer2.mp3')
+const timeOutSound = new Audio('../sounds/time-out-buzzer.wav')
 
 /*-------------------------------- Event Listeners --------------------------------*/
 
@@ -63,7 +66,31 @@ function render() {
 
 /*--SELECTING A CATEGORY FROM FOUR THEMES: MOVIES, MUSIC, TRAVEL, ART--------*/
 
+function playTimeoutSound () {
+    timeOutSound.volume = .20
+    timeOutSound.play()
+}
+
+
 function buttonClick(evt) {
+    
+    timeLeft = 10
+
+    let timer = setInterval(function() {
+        countdownEl.textContent = timeLeft + ` seconds remaining!`
+        timeLeft -= 1
+        console.log(timeLeft)
+        if (timeLeft = 0) {
+            countdownEl.textcontent = `Finished!`
+            playTimeoutSound ()
+            clearInterval(timer)
+        } else if (answerSquares[index].className === "correct" 
+        ||  answerSquares[index].className === "incorrect")
+            {countdownEl.textcontent = ``
+            clearInterval(timer)
+        }
+    }, 1000)
+
     const category = evt.target.id
     if (category === "movies") {
         categoryHolder.unshift("movies")
@@ -215,6 +242,14 @@ function handleClick(evt) {
     answerSquares.forEach(function(elem) {
         elem.removeEventListener('click', handleClick)
     })
+
+    
+
+    
+
+
+
+
     questionIncrementor ()
     updateMessage()
     checkForTie ()
@@ -371,8 +406,7 @@ function switchPlayerTurn() {
   }
 
 function nextQuestionClick(evt) {
-    console.log(categoryHolder[0])
-    console.log(categoryHolder)
+
     if (categoryHolder[0] === "movies") {
         movieQuestions(questionNumber)
     } else if (categoryHolder[0] === "music") {

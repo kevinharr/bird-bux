@@ -70,3 +70,8 @@ button {
     border: none;
     justify-content: space-between;
 }
+
+#countdown {
+    width: 200px;
+    height: 100px;
+}
