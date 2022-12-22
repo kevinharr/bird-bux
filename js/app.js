@@ -28,7 +28,7 @@ musicBtn.addEventListener('click', buttonClick)
 travelBtn.addEventListener('click', buttonClick)
 artBtn.addEventListener('click', buttonClick)
 nextBtnEl.addEventListener('click', nextQuestionClick)
-resetBtnEl.addEventListener('click', init)
+
 
 categoryHolder = []
 
@@ -37,6 +37,11 @@ categoryHolder = []
 window.onload = init()
 
 function init() {
+    questionContainer.innerHTML = ''
+    movieBtn.disabled = false;
+    musicBtn.disabled = false;
+    travelBtn.disabled = false;
+    artBtn.disabled = false;
     turn = 1
     winner = false
     winnerOfGame = ""
@@ -48,7 +53,7 @@ function init() {
     playerTwoScore = 0
     render()  
 }
-console.log("question number value", questionNumber)
+
 
 function render() {
     updateMessage()
@@ -212,7 +217,6 @@ function handleClick(evt) {
     updateMessage()
     checkForTie ()
     checkForWinner ()
-    console.log("question number value", questionNumber)
     switchPlayerTurn ()
     render()
     }
@@ -319,6 +323,7 @@ function checkForTie() {
     console.log("question number value", questionNumber)
     if (playerOneScore === playerTwoScore && questionNumber === 6) {
         tie = true
+        questionContainer.innerHTML = ''
     }
 }
 
@@ -327,9 +332,11 @@ function checkForWinner() {
     if (playerOneScore > playerTwoScore && questionNumber === 6) {
         winner = true
         winnerOfGame = "Player One"
+        questionContainer.innerHTML = ''
     } else if (playerOneScore < playerTwoScore && questionNumber === 6) {
         winner = true
         winnerOfGame = "Player Two"
+        questionContainer.innerHTML = ''
     }
 }
 
@@ -355,6 +362,8 @@ function nextQuestionClick(evt) {
     } 
     
 }
+
+resetBtnEl.addEventListener('click', init)
 
 
 
