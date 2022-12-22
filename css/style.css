@@ -17,11 +17,6 @@ div {
 
 }
 
-div[type="text"]:disabled {
-    border-style: dashed;
-  }
-
-
 h1 {
     color:deeppink
 }

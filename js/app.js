@@ -7,7 +7,7 @@ import {art} from "../data/data.js"
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let board, turn, winner, tie, questionNumber, categoryHolder, playerOneScore, playerTwoScore, questions, correctAnswer, winnerOfGame
+let board, turn, winner, tie, questionNumber, categoryHolder, playerOneScore, playerTwoScore, questions, correctAnswer, winnerOfGame, answerCorrect
 let answerSquares = document.querySelectorAll(".sqr")
 
 /*------------------------ Cached Element References ------------------------*/
@@ -45,8 +45,6 @@ function init() {
     categoryHolder = []
     questions = [null, null, null, null, null, null]
     questionNumber = 0
-   
-   
     playerOneScore = 0
     playerTwoScore = 0
     render()  
@@ -190,20 +188,13 @@ function handleClick(evt) {
     } else {
   
     let ansIdx = Number((evt.target.id.replace("ans", "")))
-    //console.log("The box chosen", ansIdx)
+   
     updateBoard(ansIdx, categoryHolder)
     answerSquares.forEach(function(elem) {
         elem.removeEventListener('click', handleClick)
     })
-   
-    
-    
-    
-   
-
     checkForTie ()
     checkForWinner ()
-    addBirdBux()
     questionIncrementor ()
     switchPlayerTurn ()
     render()
@@ -218,37 +209,56 @@ function updateBoard(index, categoryHolder) {
         case "movies":
             if (index === movies[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
-                correctAnswer = true
-                //console.log(answerSquares[index])
+               
+                answerCorrect = true
+                addBirdBux(answerCorrect)
             }
             if (index !== movies[questionNumber].correctAnswer) {
-                answerSquares[index].className = "incorrect"}    
+                answerSquares[index].className = "incorrect"}  
+                
+                answerCorrect = false
+                addBirdBux(answerCorrect) 
             break;
         case "music":
             if (index === music[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
-                correctAnswer = true
+                
+                answerCorrect = true
+                addBirdBux(answerCorrect)
                 }
             if (index !== music[questionNumber].correctAnswer) {
                 answerSquares[index].className = "incorrect"} 
+                
+                answerCorrect = false
+                addBirdBux(answerCorrect) 
             break;
         case "travel":
             console.log("category holder formovies:, categoryHolder[0]")
             if (index === travel[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
                 }
-                correctAnswer = true
+               
+                answerCorrect = true
+                addBirdBux(answerCorrect)
             if (index !== travel[questionNumber].correctAnswer) {
                 answerSquares[index].className = "incorrect"}
+               
+                answerCorrect = false
+                addBirdBux(answerCorrect) 
             break;
         case "art":
             console.log("category holder formovies:, categoryHolder[0]")
             if (index === art[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
                 }
-                correctAnswer = true
+               
+                answerCorrect = true
+                addBirdBux(answerCorrect)
             if (index !== art[questionNumber].correctAnswer) {
-                answerSquares[index].className = "incorrect"}       
+                answerSquares[index].className = "incorrect"}  
+                
+                answerCorrect = false
+                addBirdBux(answerCorrect)  
     }
 } 
 
@@ -273,17 +283,20 @@ function updateMessage() {
     }
   }
 
-function addBirdBux() {
-    if (turn === 1 && correctAnswer === true) {
+function addBirdBux(answerCorrect) {
+    if (turn === 1 && answerCorrect === true) {
         playerOneScore = playerOneScore + 100
-    } else if (turn === -1 && correctAnswer === true) {
+        console.log("player one score", playerOneScore)
+    } else if (turn === -1 && answerCorrect === true) {
         playerTwoScore = playerTwoScore + 100
+        console.log("player two score", playerTwoScore)
     }
 }
 
 function questionIncrementor () {
     questionNumber = questionNumber + 1
     return questionNumber
+    console.log(questionNumber)
 }
 
 function checkForTie() {
