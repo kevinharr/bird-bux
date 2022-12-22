@@ -7,7 +7,7 @@ import {art} from "../data/data.js"
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let board, turn, winner, tie, questionNumber, categoryHolder, playerOneScore, playerTwoScore, questions, correctAnswer, winnerOfGame, answerCorrect
+let turn, winner, tie, questionNumber, categoryHolder, playerOneScore, playerTwoScore, questions, correctAnswer, winnerOfGame, answerCorrect
 let answerSquares = document.querySelectorAll(".sqr")
 
 /*------------------------ Cached Element References ------------------------*/
@@ -48,6 +48,7 @@ function init() {
     playerTwoScore = 0
     render()  
 }
+console.log("question number value", questionNumber)
 
 function render() {
     updateMessage()
@@ -58,9 +59,7 @@ function render() {
 function buttonClick(evt) {
     const category = evt.target.id
     if (category === "movies") {
-        //console.log("Category at button click is:", category)
         categoryHolder.unshift(category)
-       // console.log("value of category holder at button click", categoryHolder)
         movieBtn.disabled = true;
         musicBtn.disabled = true;
         travelBtn.disabled = true;
@@ -68,7 +67,6 @@ function buttonClick(evt) {
         movieQuestions(questionNumber)
     }
     if (category === "music") {
-        //console.log("Category selected is:", category)
         categoryHolder.unshift(category)
         movieBtn.disabled = true;
         musicBtn.disabled = true;
@@ -77,7 +75,6 @@ function buttonClick(evt) {
         musicQuestions(questionNumber)
     }
     if (category === "travel") {
-        //console.log("Category selected is:", category)
         categoryHolder.unshift(category)
         movieBtn.disabled = true;
         musicBtn.disabled = true;
@@ -86,7 +83,6 @@ function buttonClick(evt) {
         travelQuestions(questionNumber)
     }
     if (category === "art") {
-        //console.log("Category selected is:", category)
         categoryHolder.unshift(category)
         movieBtn.disabled = true;
         musicBtn.disabled = true;
@@ -212,11 +208,11 @@ function handleClick(evt) {
     answerSquares.forEach(function(elem) {
         elem.removeEventListener('click', handleClick)
     })
+    questionIncrementor ()
+    updateMessage()
     checkForTie ()
     checkForWinner ()
-    //console.log("question increments", questionNumber)
-    questionIncrementor ()
-    //console.log("question increments", questionNumber)
+    console.log("question number value", questionNumber)
     switchPlayerTurn ()
     render()
     }
@@ -225,6 +221,7 @@ function handleClick(evt) {
 /*--------UPDATE THE GAME BOARD------------------------------------*/
 
 function updateBoard(index, categoryHolder) {
+    console.log("question number value", questionNumber)
     switch(categoryHolder[0]) {   
         case "movies":
             if (index === movies[questionNumber].correctAnswer) {
@@ -285,6 +282,7 @@ function updateBoard(index, categoryHolder) {
 /*------UPDATE MESSAGE BOARD-------------------------------------*/
 
 function updateMessage() {
+    console.log("question number value", questionNumber)
     let PlayerSelected
     let PlayerOne = "Player One"
     let PlayerTwo = "Player Two"
@@ -294,6 +292,7 @@ function updateMessage() {
     } else if (turn === -1) {
       PlayerSelected = PlayerTwo
     }
+    console.log("value of winner", winner)
     if (winner === false && tie === false) {
       messageEl.textContent = `It is the turn of ${PlayerSelected}.`
     } else if (winner === false && tie === true) {
@@ -306,30 +305,32 @@ function updateMessage() {
 function addBirdBux(answerCorrect) {
     if (turn === 1 && answerCorrect === true) {
         playerOneScore = playerOneScore + 100
-        console.log("player one score", playerOneScore)
     } else if (turn === -1 && answerCorrect === true) {
         playerTwoScore = playerTwoScore + 100
-        console.log("player two score", playerTwoScore)
     }
 }
 
 function questionIncrementor () {
     questionNumber = questionNumber + 1
     return questionNumber
-    console.log(questionNumber)
+    
 }
 
 function checkForTie() {
-    if (playerOneScore === playerTwoScore && questionNumber === 6) {
+    console.log("question number value", questionNumber)
+    if (playerOneScore === playerTwoScore && questionNumber === 5) {
         tie = true
     }
 }
 
 function checkForWinner() {
-    if (playerOneScore > playerTwoScore && questionNumber === 6) {
+    console.log("question number value", questionNumber)
+    if (playerOneScore > playerTwoScore && questionNumber === 5) {
+        winner = true
         winnerOfGame = "Player One"
-    } else if (playerOneScore < playerTwoScore && questionNumber === 6) {
-        winnerOfGame = "Player One"
+    } else if (playerOneScore < playerTwoScore && questionNumber === 5) {
+        winner = true
+        winnerOfGame = "Player Two"
     }
 }
 
@@ -343,16 +344,12 @@ function switchPlayerTurn() {
 
 function nextQuestionClick(evt) {
     if (categoryHolder[0] = "movies") {
-        console.log("value of catery holder", categoryHolder[0])
         movieQuestions(questionNumber)
     } else if (categoryHolder[0] = "music") {
-        console.log("value of catery holder", categoryHolder[0])
         musicQuestions(questionNumber)
     } else if (categoryHolder[0] = "travel") {
-        console.log("value of catery holder", categoryHolder[0])
         travelQuestions(questionNumber)
     } else if (categoryHolder[0] = "art") { 
-        console.log("value of catery holder", categoryHolder[0])
         artQuestions(questionNumber)   
     } 
     

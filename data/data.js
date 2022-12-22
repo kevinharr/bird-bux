@@ -23,8 +23,8 @@ const travel = [
     { category: "travel", question: "How many floors are in the Empire State Building?", answerOne: "82", answerTwo: "102",  answerThree: "122", answerFour: "142", correctAnswer: 1},
     { category: "travel", question: "In which capital city can you find the Petronas Twin Towers?", answerOne: "Johor Bahru", answerTwo: "Ipoh",  answerThree: "George Town Of Penang", answerFour: "Kuala Lumpur", correctAnswer: 3},
     { category: "travel", question: "Which basilica sits at the top of the Montmartre hill in Paris?", answerOne: "Notre Dame", answerTwo: "Sainte-Chapelle",  answerThree: "Eglise Saint-Sulpice", answerFour: "Sacré-Cœur", correctAnswer: 3},
-    { category: "travel", question: "Where did the bungee jump originate?", answerOne: "Nepal", answerTwo: "New Zealand",  answerThree: "Switzerland", answerFour: "United States", correctAnswer: 1}
-    { category: "travel", question: "How many Emirates does the United Arab Emirates (UAE) have?", answerOne: "2", answerTwo: "5",  answerThree: "7", answerFour: "13", correctAnswer: 2}
+    { category: "travel", question: "Where did the bungee jump originate?", answerOne: "Nepal", answerTwo: "New Zealand",  answerThree: "Switzerland", answerFour: "United States", correctAnswer: 1},
+    { category: "travel", question: "How many Emirates does the United Arab Emirates (UAE) have?", answerOne: "2", answerTwo: "5",  answerThree: "7", answerFour: "13", correctAnswer: 2},
 ]
 
 const art = [
