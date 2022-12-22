@@ -20,6 +20,8 @@ const artBtn = document.getElementById("art")
 const resetBtnEl = document.getElementById("reset-button")
 const nextBtnEl = document.getElementById("next-button")
 const questionContainer = document.getElementById("question-container")
+const correctSound = new Audio('../sounds/correct-answer.wav')
+const incorrectSound = new Audio('../sounds/incorrect-answer2.mp3')
 
 /*-------------------------------- Event Listeners --------------------------------*/
 
@@ -221,21 +223,33 @@ function handleClick(evt) {
     render()
     }
     } 
-    
+
+    function playCorrectSound () {
+        correctSound.volume = .20
+        correctSound.play()
+    }
+
+    function playIncorrectSound () {
+        incorrectSound.volume = .20
+        incorrectSound.play()
+    }
 /*--------UPDATE THE GAME BOARD------------------------------------*/
 
 function updateBoard(index, categoryHolder) {
-    console.log("question number value", questionNumber)
     switch(categoryHolder[0]) {   
         case "movies":
             if (index === movies[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
+
+                playCorrectSound ()
                
                 answerCorrect = true
                 addBirdBux(answerCorrect)
             }
             if (index !== movies[questionNumber].correctAnswer) {
                 answerSquares[index].className = "incorrect"}  
+
+                playIncorrectSound ()
                 
                 answerCorrect = false
                 addBirdBux(answerCorrect) 
@@ -243,12 +257,16 @@ function updateBoard(index, categoryHolder) {
         case "music":
             if (index === music[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
+
+                playCorrectSound ()
                 
                 answerCorrect = true
                 addBirdBux(answerCorrect)
                 }
             if (index !== music[questionNumber].correctAnswer) {
                 answerSquares[index].className = "incorrect"} 
+
+                playIncorrectSound ()
                 
                 answerCorrect = false
                 addBirdBux(answerCorrect) 
@@ -257,11 +275,15 @@ function updateBoard(index, categoryHolder) {
             if (index === travel[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
                 }
+
+                playCorrectSound ()
                
                 answerCorrect = true
                 addBirdBux(answerCorrect)
             if (index !== travel[questionNumber].correctAnswer) {
                 answerSquares[index].className = "incorrect"}
+
+                playIncorrectSound ()
                
                 answerCorrect = false
                 addBirdBux(answerCorrect) 
@@ -271,11 +293,15 @@ function updateBoard(index, categoryHolder) {
             if (index === art[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
                 }
+
+                playCorrectSound ()
                
                 answerCorrect = true
                 addBirdBux(answerCorrect)
             if (index !== art[questionNumber].correctAnswer) {
-                answerSquares[index].className = "incorrect"}  
+                answerSquares[index].className = "incorrect"} 
+                
+                playIncorrectSound ()
                 
                 answerCorrect = false
                 addBirdBux(answerCorrect)  
@@ -285,7 +311,6 @@ function updateBoard(index, categoryHolder) {
 /*------UPDATE MESSAGE BOARD-------------------------------------*/
 
 function updateMessage() {
-    console.log("question number value", questionNumber)
     let PlayerSelected
     let PlayerOne = "Player One"
     let PlayerTwo = "Player Two"
@@ -295,7 +320,6 @@ function updateMessage() {
     } else if (turn === -1) {
       PlayerSelected = PlayerTwo
     }
-    console.log("value of winner", winner)
     if (winner === false && tie === false) {
       messageEl.textContent = `It is the turn of ${PlayerSelected}.`
     } else if (winner === false && tie === true) {
@@ -320,7 +344,6 @@ function questionIncrementor () {
 }
 
 function checkForTie() {
-    console.log("question number value", questionNumber)
     if (playerOneScore === playerTwoScore && questionNumber === 6) {
         tie = true
         questionContainer.innerHTML = ''
@@ -328,7 +351,6 @@ function checkForTie() {
 }
 
 function checkForWinner() {
-    console.log("question number value", questionNumber)
     if (playerOneScore > playerTwoScore && questionNumber === 6) {
         winner = true
         winnerOfGame = "Player One"
