@@ -138,6 +138,7 @@ function musicQuestions(num) {
     `
 
     questionContainer.appendChild(questionCard)
+  
 }
 
 function travelQuestions(num) {
@@ -187,10 +188,18 @@ function handleClick(evt) {
     if (winner === true) {
         return
     } else {
+  
     let ansIdx = Number((evt.target.id.replace("ans", "")))
     //console.log("The box chosen", ansIdx)
     updateBoard(ansIdx, categoryHolder)
-    answerSquares.setAttribute("type", "text");
+    answerSquares.forEach(function(elem) {
+        elem.removeEventListener('click', handleClick)
+    })
+   
+    
+    
+    
+   
 
     checkForTie ()
     checkForWinner ()
@@ -204,17 +213,16 @@ function handleClick(evt) {
 /*--------UPDATE THE GAME BOARD------------------------------------*/
 
 function updateBoard(index, categoryHolder) {
-    console.group("value of categoryholder BEFORE switch conditional:", categoryHolder[0])
+    //console.group("value of categoryholder BEFORE switch conditional:", categoryHolder[0])
     switch(categoryHolder[0]) {   
         case "movies":
             if (index === movies[questionNumber].correctAnswer) {
                 answerSquares[index].className = "correct" 
                 correctAnswer = true
-                console.log(answerSquares[index])
+                //console.log(answerSquares[index])
             }
             if (index !== movies[questionNumber].correctAnswer) {
-                answerSquares[index].className = "incorrect"}
-                console.log(answerSquares[index])
+                answerSquares[index].className = "incorrect"}    
             break;
         case "music":
             if (index === music[questionNumber].correctAnswer) {

@@ -69,8 +69,9 @@ button {
 }
 
 #play-button-buckets {
-    display;
+    display: flex;
     flex-direction: row;
     width: 100px;
     border: none;
+    justify-content: space-between;
 }
