@@ -342,17 +342,20 @@ function switchPlayerTurn() {
   }
 
 function nextQuestionClick(evt) {
-    console.log("category holder value", categoryHolder[0])
     if (categoryHolder[0] = "movies") {
+        console.log("value of catery holder", categoryHolder[0])
         movieQuestions(questionNumber)
     } else if (categoryHolder[0] = "music") {
-
+        console.log("value of catery holder", categoryHolder[0])
         musicQuestions(questionNumber)
     } else if (categoryHolder[0] = "travel") {
+        console.log("value of catery holder", categoryHolder[0])
         travelQuestions(questionNumber)
-    } else if (categoryHolder[0] = "art") {  
+    } else if (categoryHolder[0] = "art") { 
+        console.log("value of catery holder", categoryHolder[0])
         artQuestions(questionNumber)   
     } 
+    
 }
 
 

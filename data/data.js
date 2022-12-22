@@ -5,6 +5,7 @@ const movies = [
     { category: "movies", question: "Which actor was in the following movies: The Outsiders, Wayne’s World, and Tommy Boy", answerOne: "Tom Cruise", answerTwo: "Matt Dillon",  answerThree: "Rob Lowe", answerFour: "C. Thomas Howell", correctAnswer: 2},
     { category: "movies", question: "What was the top-grossing movie of 2014?", answerOne: "The Hunger Games: Mockingjay Part 1", answerTwo: "The Lego Movie",  answerThree: "Captain America: The Winter Soldier", answerFour: "Guardians of the Galaxy", correctAnswer: 3},
     { category: "movies", question: "Who directed the hit 2017 movie Get Out?", answerOne: "James Wan", answerTwo: "Jordan Peele",  answerThree: "Guillermo del Toro", answerFour: "Tim Story", correctAnswer: 1},
+    { category: "movies", question: "The code in The Matrix comes from what food recipes?", answerOne: "Sushi recipes", answerTwo: "Dumpling recipes",  answerThree: "Stir-fry recipes", answerFour: "Pad thai recipes", correctAnswer: 0},
 ]
 
 const music = [
@@ -14,8 +15,8 @@ const music = [
     { category: "music", question: "Who was the first woman ever inducted into the Rock and Roll Hall of Fame", answerOne: "Aretha Franlin", answerTwo: "Janis Joplin",  answerThree: "Grace Slick", answerFour: "Joni Mitchell", correctAnswer: 0},
     { category: "music", question: "Which Alanis Morissette song contains the phrase 'jagged little pill?", answerOne: "Ironic", answerTwo: "You Learn", answerThree: "Perfect", answerFour: "Wake Up", correctAnswer: 1},
     { category: "music", question: "Who was the first lead guitarist of Metallica?", answerOne: "James Hetfield", answerTwo: "Kirk Hammett", answerThree: "Paul SchraderRon McGovney", answerFour: "Dave Mustaine", correctAnswer: 3},
+    { category: "music", question: "As a child, what singer held the longest note ever on Star Search?", answerOne: "Christina Aguilera", answerTwo: "Justin Timberlake", answerThree: "Usher", answerFour: "Britney Spears", correctAnswer: 2},
 ]
-
 const travel = [
     { category: "travel", question: "What is the world’s number one destination for international tourists?", answerOne: "London", answerTwo: "Rome",  answerThree: "New York", answerFour: "Paris", correctAnswer: 3},
     { category: "travel", question: "Which two Australian cities are connected by the Ghan train?", answerOne: "Darwin and Adelaide", answerTwo: "Melbourne and Brisbane",  answerThree: "Broome and Alice Springs", answerFour: "Perth and Sydney", correctAnswer: 0},
@@ -23,15 +24,17 @@ const travel = [
     { category: "travel", question: "In which capital city can you find the Petronas Twin Towers?", answerOne: "Johor Bahru", answerTwo: "Ipoh",  answerThree: "George Town Of Penang", answerFour: "Kuala Lumpur", correctAnswer: 3},
     { category: "travel", question: "Which basilica sits at the top of the Montmartre hill in Paris?", answerOne: "Notre Dame", answerTwo: "Sainte-Chapelle",  answerThree: "Eglise Saint-Sulpice", answerFour: "Sacré-Cœur", correctAnswer: 3},
     { category: "travel", question: "Where did the bungee jump originate?", answerOne: "Nepal", answerTwo: "New Zealand",  answerThree: "Switzerland", answerFour: "United States", correctAnswer: 1}
+    { category: "travel", question: "How many Emirates does the United Arab Emirates (UAE) have?", answerOne: "2", answerTwo: "5",  answerThree: "7", answerFour: "13", correctAnswer: 2}
 ]
 
 const art = [
     { category: "art", question: "Which of Picasso’s famous paintings was inspired by the bombings of civilians during the Spanish War?", answerOne: "The Weeping Woman", answerTwo: "Le Reve",  answerThree: "Guernica", answerFour: "La Vie", correctAnswer: 2},
     { category: "art", question: "Which French artist is most famous for his obsession with ballerinas?", answerOne: "Edgar Degas", answerTwo: "Claude Monet",  answerThree: "Pierre-Auguste Renoir", answerFour: "Edouard Manet", correctAnswer: 0},
     { category: "art", question: "The American Gothic is one of the most recognizable paintings in the world. Who painted it?", answerOne: "Norman Rockwell", answerTwo: "Grant Wood",  answerThree: "Jackson Pollock", answerFour: "Georgia O'Keeffe", correctAnswer: 1},
-    { category: "art", question: "This famous painting by Leonardo Da Vinci was used for target practice by Napoleon’s soldiers.", answerOne: "Mona Lisa", answerTwo: "The Last Supper",  answerThree: "Vitruvian Man", answerFour: "Salvator Mundi", correctAnswer: 4},
+    { category: "art", question: "This famous painting by Leonardo Da Vinci was used for target practice by Napoleon’s soldiers.", answerOne: "Mona Lisa", answerTwo: "Salvator Mundi",  answerThree: "Vitruvian Man", answerFour: "The Last Supper", correctAnswer: 3},
     { category: "art", question: "The famous painting, 'Birth of Venus' by Botticelli, features a goddess floating in the ocean on what?", answerOne: "A rowboat", answerTwo: "A seashell",  answerThree: "A branch", answerFour: "A stack of lily pads", correctAnswer: 1},
-    { category: "art", question: "Which is the only piece of artwork that Michelangelo had ever signed?", answerOne: "The Sistine Chapel", answerTwo: "Madonna of Bruges",  answerThree: "The Pieta", answerFour: "Bacchus", correctAnswer: 1},
+    { category: "art", question: "Which is the only piece of artwork that Michelangelo had ever signed?", answerOne: "The Sistine Chapel", answerTwo: "Madonna of Bruges",  answerThree: "The Pieta", answerFour: "Bacchus", correctAnswer: 2},
+    { category: "art", question: "Which technique did Vincent Van Gogh use to paint “Sunflowers”?", answerOne: "Impasto", answerTwo: "Pouring",  answerThree: "Sgraffito", answerFour: "Glazing", correctAnswer: 0},
 ]
 
 
