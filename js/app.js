@@ -23,7 +23,7 @@ const artBtn = document.getElementById("art")
 const resetBtnEl = document.getElementById("reset-button")
 const nextBtnEl = document.getElementById("next-button")
 const questionContainer = document.getElementById("question-container")
-const correctSound = new Audio('../sounds/correct-answer.wav')
+const correctSound = new Audio('../sounds/cha-ching.mp3')
 const incorrectSound = new Audio('../sounds/incorrect-answer2.mp3')
 const timeOutSound = new Audio('../sounds/time-out-buzzer.wav')
 const playerOneScoreMessage = document.getElementById("playerOneScore")
@@ -76,7 +76,7 @@ function playTimeoutSound () {
 }
 
 function playCorrectSound () {
-    correctSound.volume = .20
+    correctSound.volume = .25
     correctSound.play()
 }
 
@@ -141,7 +141,8 @@ function startTimer(){
     }
     timeLeft = 10
     timerInterval = setInterval(function() {
-      countdownEl.textContent = timeLeft + ` Seconds `
+      countdownEl.textContent = timeLeft
+      console.log(countdownEl)
       timeLeft -= 1
       if (timeLeft < 0) {
         clearInterval(timerInterval)
@@ -397,9 +398,7 @@ function updateMessage() {
 function addBirdBux(answerCorrect) {
     if (turn === 1 && answerCorrect === true) {
         playerOneScore = playerOneScore + 100
-        console.log( typeof playerOneScore)
         let stringToNumber1 = playerOneScore.toString()
-        console.log("value of stringToNumber1", stringToNumber1)
         playerOneScoreMessage.textContent = stringToNumber1
     } else if (turn === -1 && answerCorrect === true) {
         playerTwoScore = playerTwoScore + 100

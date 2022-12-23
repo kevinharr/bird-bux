@@ -1,30 +1,32 @@
 body {
-    background-image: url("pictures/pink-and-white-clouds2.jpg");
     background-color: pink;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
 		Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   margin: 20px 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
-#master-div {
+#container-div {
     display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    width: 1000px;
+    flex-direction: column;
 }
 
 #title {
     width: 180px;
-    height: 180px;
+    height: px;
+    color: black;
+    margin: 10px 10px 10px 40px;
 }
 
-#titleAndPick {
+/* #titleAndPick {
     display: flex;
     flex-direction: row;
+} */
+
+#img {
+    width:40px;
+    height: 30px:
+
 }
 
 #message {
@@ -45,13 +47,7 @@ body {
     margin: 15px 10px 10px 18px;
 }
 
-div {
-  align-items:initial;
-  border: 1px solid;
-  font-size: small;
-  text-align: center;
-  vertical-align: middle;
-}
+
 
 h1 {
     color:deeppink
@@ -136,9 +132,22 @@ button {
     border: none;
 }
 
-player-scores-holder1 (
-    display: flex;
-    
+#playerOneTitle {
+    font-size: 18px;
+}
 
-)
+#playerTwoTitle {
+    font-size: 18px;
+}
+
+#playerOneScore {
+    color: green;
+}
+
+#playerTwoScore {
+    color: green;
+}
+
+
+
 
