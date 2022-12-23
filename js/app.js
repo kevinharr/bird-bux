@@ -139,9 +139,10 @@ function startTimer(){
     if (timerInterval){
       clearInterval(timerInterval)
     }
-    timeLeft = 10
+   
     timerInterval = setInterval(function() {
-      countdownEl.textContent = timeLeft
+      timeLeft = 10 
+      countdownEl.textContent = timeLeft + ` seconds `
       console.log(countdownEl)
       timeLeft -= 1
       if (timeLeft < 0) {
@@ -151,6 +152,7 @@ function startTimer(){
     }, 1000);
   }
   
+
   function stopTimer () {
       if (timerInterval){
           clearInterval(timerInterval)
