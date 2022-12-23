@@ -26,6 +26,7 @@ const questionContainer = document.getElementById("question-container")
 const correctSound = new Audio('../sounds/cha-ching.mp3')
 const incorrectSound = new Audio('../sounds/incorrect-answer2.mp3')
 const timeOutSound = new Audio('../sounds/time-out-buzzer.wav')
+const winSound = new Audio('../sounds/jackpot.wav')
 const playerOneScoreMessage = document.getElementById("playerOneScore")
 const playerTwoScoreMessage = document.getElementById("playerTwoScore")
 
@@ -83,6 +84,11 @@ function playCorrectSound () {
 function playIncorrectSound () {
     incorrectSound.volume = .20
     incorrectSound.play()
+}
+
+function playWinSound () {
+    winSound.volume = .30
+    winSound.play()
 }
 
 /*--SELECTING A CATEGORY FROM FOUR THEMES: MOVIES, MUSIC, TRAVEL, ART--------*/
@@ -391,6 +397,7 @@ function updateMessage() {
       messageEl.textContent = "It is a tie."
     } else if (winner === true && tie === false) {
       messageEl.textContent = `The winner is ${winnerOfGame}.`
+      playWinSound ()
     }
 }
 
@@ -428,6 +435,7 @@ function checkForWinner() {
         winner = true
         nextBtnEl.disabled = true;
         winnerOfGame = "Player One"
+       
         questionContainer.innerHTML = ''
     } else if (playerOneScore < playerTwoScore && questionNumber === 6) {
         winner = true
