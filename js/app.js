@@ -26,8 +26,8 @@ const questionContainer = document.getElementById("question-container")
 const correctSound = new Audio('../sounds/correct-answer.wav')
 const incorrectSound = new Audio('../sounds/incorrect-answer2.mp3')
 const timeOutSound = new Audio('../sounds/time-out-buzzer.wav')
-const playerOneScoreMessage = document.getElementById(playerOneScore)
-const playerTwoScoreMessage = document.getElementById(playerTwoScore)
+const playerOneScoreMessage = document.getElementById("playerOneScore")
+const playerTwoScoreMessage = document.getElementById("playerTwoScore")
 
 
 /*-------------------------------- Event Listeners --------------------------------*/
@@ -87,31 +87,7 @@ function playIncorrectSound () {
 
 /*--SELECTING A CATEGORY FROM FOUR THEMES: MOVIES, MUSIC, TRAVEL, ART--------*/
 
-
-
-function startTimer(){
-  if (timerInterval){
-    clearInterval(timerInterval)
-  }
-  timeLeft = 10
-  timerInterval = setInterval(function() {
-    countdownEl.textContent = timeLeft + ` Seconds Remaining `
-    timeLeft -= 1
-    if (timeLeft < 0) {
-      clearInterval(timerInterval)
-      playTimeoutSound ()
-    } 
-  }, 1000);
-}
-
-function stopTimer () {
-    if (timerInterval){
-        clearInterval(timerInterval)
-}
-    }
-
 function buttonClick(evt) {
-    console.log("hello")
 
     const category = evt.target.id
     if (category === "movies") {
@@ -159,11 +135,27 @@ function buttonClick(evt) {
 
 /*-------TIMERS--------------------------------------------------*/
 
-
+function startTimer(){
+    if (timerInterval){
+      clearInterval(timerInterval)
+    }
+    timeLeft = 10
+    timerInterval = setInterval(function() {
+      countdownEl.textContent = timeLeft + ` Seconds Remaining `
+      timeLeft -= 1
+      if (timeLeft < 0) {
+        clearInterval(timerInterval)
+        playTimeoutSound ()
+      } 
+    }, 1000);
+  }
+  
+  function stopTimer () {
+      if (timerInterval){
+          clearInterval(timerInterval)
+  }
+      }
    
-
-
-
 /*--------QUESTION GENERATOR BY CATEGORY----------------------------*/
 
 
@@ -213,7 +205,6 @@ function musicQuestions(num) {
         elem.addEventListener('click', handleClick)
     }
     )
-  
 }
 
 function travelQuestions(num) {
@@ -282,7 +273,6 @@ function handleClick(evt) {
         elem.removeEventListener('click', handleClick)
     }
     )
-
     questionIncrementor ()
     updateMessage()
     checkForTie ()
@@ -407,10 +397,14 @@ function updateMessage() {
 function addBirdBux(answerCorrect) {
     if (turn === 1 && answerCorrect === true) {
         playerOneScore = playerOneScore + 100
-        playerOneScoreMessage.textContent = playerOneScore
+        console.log( typeof playerOneScore)
+        let stringToNumber1 = playerOneScore.toString()
+        console.log("value of stringToNumber1", stringToNumber1)
+        playerOneScoreMessage.textContent = stringToNumber1
     } else if (turn === -1 && answerCorrect === true) {
         playerTwoScore = playerTwoScore + 100
-        playerTwoScoreMessage.textContent = playerTwoScore
+        let stringNumber2 = playerTwoScore.toString()
+        playerTwoScoreMessage.textContent = playerTwoScore.toString()
     }
 }
 
