@@ -1,7 +1,8 @@
 
-[SCREEN PICTURE]
+![This is an image of the splash screen for Bird Bux] (birdbux/pictures/Bird Bux Screenshot.png)
 
-This shows the splash page for the beginning of the game.
+
+
 
 **Bird Bux**
 
