@@ -1,17 +1,43 @@
 body {
-  background-color: wheat;
+    background-image: url("pictures/pink-and-white-clouds2.jpg");
+    background-color: pink;
+
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
 		Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  margin: 20px;
-  height: 100vh;
+  margin: 20px 100px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
+
+#title {
+    width: 180px;
+    height: 180px;
+}
+
+#titleAndPick {
+    display: flex;
+    flex-direction: row;
+}
+
+#message {
+    color:green;
+    font-size: 30px;
+    font-style: italic;
+    font-family: 'Dancing Script', cursive;
+}
 #question-container {
-    width: 350px;
+    width: 354px;
+    margin: 10px 10px 10px 1px;
 }
 
+
+#stopwatch {
+    width: 80px;
+    height: 100px;
+    margin: 15px 10px 10px 18px;
+}
 
 div {
   align-items:initial;
@@ -32,15 +58,27 @@ h1 {
     width: 1000px;
 }
 
+#next-button {
+    margin: 0px 10px 10px 40px;
+    width: 100px;
+}
 .grid-item {
     /* border-color: black; */
     border-width: 1px;
 }
 
+#pick {
+    margin: 10px 10px 10px 5px;
+}
 button {
     width: 80px;
+    height: 80px;
     padding: 10px;
     border-color: black;
+    background-color: green;
+    color:white;
+    font-size: 20px;
+    border-radius: 10px;
 }
 
 #button-container {
@@ -50,8 +88,6 @@ button {
     justify-content: space-around;
     border: none;
     margin: 10px;
-
-    
 }
 
 #answer-container {
@@ -76,14 +112,16 @@ button {
     flex-direction: row;
     width: 200px;
     border: none;
-    justify-content:space-evenly
+    justify-content:space-evenly;
+    margin: 10px 10px 10px 10px;
 }
 
 #countdown {
-    width: 200px;
+    width: 100px;
     height: 100px;
     border: none;
-    font-size: 20px;
+    font-size: 18px;
+    margin: 1px 1px 10px 10px
 }
 
 #timer-container {
@@ -92,22 +130,9 @@ button {
     border: none;
 }
 
-#player-scores-holder {
-    display:flex;
-    flex-direction: rows;
-    justify-content: space-around;
-    border: none;
-    width: 300px;
-}
+player-scores-holder1 (
+    display: flex;
+    
 
-#player-one-box {
-    border: none;
-}
+)
 
-#player-two-box {
-    border: none;
-}
-
-#reset-button {
-    padding: 10px;
-}

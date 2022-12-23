@@ -141,7 +141,7 @@ function startTimer(){
     }
     timeLeft = 10
     timerInterval = setInterval(function() {
-      countdownEl.textContent = timeLeft + ` Seconds Remaining `
+      countdownEl.textContent = timeLeft + ` Seconds `
       timeLeft -= 1
       if (timeLeft < 0) {
         clearInterval(timerInterval)
@@ -383,7 +383,7 @@ function updateMessage() {
       PlayerSelected = PlayerTwo
     }
     if (winner === false && tie === false) {
-      messageEl.textContent = `It is the turn of ${PlayerSelected}.`
+      messageEl.textContent = `You're up ${PlayerSelected}.`
     } else if (winner === false && tie === true) {
       messageEl.textContent = "It is a tie."
     } else if (winner === true && tie === false) {
